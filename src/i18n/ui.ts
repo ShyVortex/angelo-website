@@ -39,3 +39,20 @@ export const ui = {
     "footer.privacy": "Privacy Policy",
   },
 } as const;
+
+export const routes = {
+  it: {
+    "biografia": "biografia",
+    "cv": "cv",
+    "skills": "skills",
+    "portfolio": "portfolio",
+    "contatti": "contatti",
+  },
+  en: {
+    "biografia": "biography",
+    "cv": "resume",
+    "skills": "skills",
+    "portfolio": "portfolio",
+    "contatti": "contact",
+  },
+} as const;

@@ -1,135 +1,248 @@
 ---
-import { getLangFromUrl, useTranslations, useTranslatedPath } from "../i18n/utils";
+import {
+    getLangFromUrl,
+    useTranslations,
+    useTranslatedPath,
+    getRouteFromUrl,
+} from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+const currentRoute = getRouteFromUrl(Astro.url);
 ---
 
-<header
-    class="bg-bg-header text-main py-4 px-6 shadow-sm grid grid-cols-3 items-center"
->
-    <div class="flex items-center select-none justify-self-start">
-        <img
-            width="50"
-            height="50"
-            class="block mr-4 rounded-full shrink-0 object-cover"
-            draggable="false"
-            src="src/assets/commons/avatar.png"
-        />
-        <div class="flex flex-col">
-            <span class="text-[20px] font-semibold leading-tight"
-                >Angelo Trotta</span
-            >
-            <span class="text-[12px] opacity-80">Web & Software Developer</span>
-        </div>
-    </div>
-    <nav class="flex gap-6 justify-self-center">
-        <a
-            href={translatePath('/')}
-            class="text-[20px] text-route hover:text-header-highlight transition-colors"
-            >{t('nav.home')}</a
-        >
-        <a
-            href={translatePath('/biografia')}
-            class="text-[20px] text-route hover:text-header-highlight transition-colors"
-            >{t('nav.biografia')}</a
-        >
-        <a
-            href={translatePath('/cv')}
-            class="text-[20px] text-route hover:text-header-highlight transition-colors"
-            >{t('nav.cv')}</a
-        >
-        <a
-            href={translatePath('/skills')}
-            class="text-[20px] text-route hover:text-header-highlight transition-colors"
-            >{t('nav.skills')}</a
-        >
-        <a
-            href={translatePath('/portfolio')}
-            class="text-[20px] text-route hover:text-header-highlight transition-colors"
-            >{t('nav.portfolio')}</a
-        >
-        <a
-            href={translatePath('/contatti')}
-            class="text-[20px] text-route hover:text-header-highlight transition-colors"
-            >{t('nav.contatti')}</a
-        >
-    </nav>
-    <div class="flex items-center justify-self-end">
-        <!-- Barra di ricerca espandibile -->
+<header class="bg-bg-header text-main shadow-sm relative z-50">
+    <div
+        class="py-4 px-6 flex justify-between items-center md:grid md:grid-cols-3"
+    >
         <div
-            id="search-container"
-            class="flex items-center transition-all duration-300 w-0 opacity-0 overflow-hidden mr-2"
-        >
-            <input
-                type="text"
-                id="search-input"
-                placeholder={t('search.placeholder')}
-                class="bg-transparent border-b border-main focus:outline-none py-1 px-2 text-[16px] w-40 text-main"
-            />
-        </div>
-
-        <button
-            id="search-toggle-btn"
-            class="focus:outline-none flex items-center justify-center w-[35px] h-[35px] mr-4 cursor-pointer"
-            aria-label="Cerca"
+            id="leftBanner"
+            class="flex items-center select-none justify-self-start cursor-pointer"
         >
             <img
-                id="search-icon"
-                width="35"
-                height="35"
-                class="block rounded-full shrink-0 object-cover dark:invert"
+                width="50"
+                height="50"
+                class="block mr-4 rounded-full shrink-0 object-cover"
                 draggable="false"
-                src="src/assets/commons/search.svg"
-                alt="Search"
+                src="src/assets/commons/avatar.png"
             />
-            <svg
-                id="close-icon"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                class="hidden text-main dark:text-white"
-            >
-                <path
-                    d="M18 6L6 18M6 6l12 12"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-            </svg>
-        </button>
-
-        <div class="flex gap-1 items-center">
+            <div class="flex flex-col">
+                <span class="text-[15px] md:text-[20px] font-semibold leading-tight"
+                    >Angelo Trotta</span
+                >
+                <span class="text-[8px] md:text-[12px] opacity-80"
+                    >Web & Software Developer</span
+                >
+            </div>
+        </div>
+        <nav class="hidden md:flex gap-6 justify-self-center">
             <a
-                href={translatePath('/', 'it')}
-                class={`text-[16px] hover:text-header-highlight transition-colors ${lang === 'it' ? 'text-lang-selected font-semibold' : 'text-route'}`}
+                href={translatePath("/")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.home")}</a
+            >
+            <a
+                href={translatePath("/biografia")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.biografia")}</a
+            >
+            <a
+                href={translatePath("/cv")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.cv")}</a
+            >
+            <a
+                href={translatePath("/skills")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.skills")}</a
+            >
+            <a
+                href={translatePath("/portfolio")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.portfolio")}</a
+            >
+            <a
+                href={translatePath("/contatti")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.contatti")}</a
+            >
+        </nav>
+        <div class="flex items-center justify-self-end gap-1 md:gap-0">
+            <!-- Barra di ricerca espandibile -->
+            <div
+                id="search-container"
+                class="flex items-center transition-all duration-300 w-0 opacity-0 overflow-hidden mr-2"
+            >
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder={t("search.placeholder")}
+                    class="bg-transparent border-b border-main focus:outline-none py-1 px-2 text-[16px] w-40 text-main"
+                />
+            </div>
+
+            <button
+                id="search-toggle-btn"
+                class="focus:outline-none flex items-center justify-center w-[35px] h-[35px] mr-4 cursor-pointer"
+                aria-label="Cerca"
+            >
+                <img
+                    id="search-icon"
+                    width="35"
+                    height="35"
+                    class="block rounded-full shrink-0 object-cover dark:invert"
+                    draggable="false"
+                    src="src/assets/commons/search.svg"
+                    alt="Search"
+                />
+                <svg
+                    id="close-icon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    class="hidden text-main dark:text-white"
+                >
+                    <path
+                        d="M18 6L6 18M6 6l12 12"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </button>
+
+            <div class="hidden md:flex gap-1 items-center">
+                <a
+                    href={translatePath(currentRoute, "it")}
+                    class={`text-[16px] hover:text-header-highlight transition-colors ${lang === "it" ? "text-lang-selected font-semibold" : "text-route"}`}
+                >
+                    ITA
+                </a>
+                <span class="text-[16px] opacity-50">|</span>
+                <a
+                    href={translatePath(currentRoute, "en")}
+                    class={`text-[16px] hover:text-header-highlight transition-colors ${lang === "en" ? "text-lang-selected font-semibold" : "text-route"}`}
+                >
+                    ENG
+                </a>
+            </div>
+            <button id="theme-switch-btn" class="focus:outline-none">
+                <img
+                    id="theme-icon"
+                    width="35"
+                    height="35"
+                    class="block ml-1 md:ml-4 rounded-full shrink-0 object-cover cursor-pointer dark:invert"
+                    draggable="false"
+                    src="src/assets/commons/mode-switch.svg"
+                />
+            </button>
+            <button
+                id="mobile-menu-btn"
+                class="block md:hidden focus:outline-none ml-6 cursor-pointer"
+                aria-label="Menu"
+            >
+                <svg
+                    id="menu-icon"
+                    class="w-8 h-8 text-main dark:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                <svg
+                    id="menu-close-icon"
+                    class="hidden w-8 h-8 text-main dark:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Search Bar Dropdown -->
+    <div
+        id="mobile-search-container"
+        class="hidden md:hidden border-t border-underline/10 py-3 px-6 bg-bg-header transition-all duration-300 items-center"
+    >
+        <input
+            type="text"
+            id="mobile-search-input"
+            placeholder={t("search.placeholder")}
+            class="bg-transparent border-b border-main focus:outline-none py-1 px-2 text-[16px] w-full text-main"
+        />
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div
+        id="mobile-menu"
+        class="hidden md:hidden border-t border-underline/10 py-6 px-6 flex-col gap-6 bg-bg-header transition-all duration-300"
+    >
+        <nav class="flex flex-col gap-4">
+            <a
+                href={translatePath("/")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.home")}</a
+            >
+            <a
+                href={translatePath("/biografia")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.biografia")}</a
+            >
+            <a
+                href={translatePath("/cv")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.cv")}</a
+            >
+            <a
+                href={translatePath("/skills")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.skills")}</a
+            >
+            <a
+                href={translatePath("/portfolio")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.portfolio")}</a
+            >
+            <a
+                href={translatePath("/contatti")}
+                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                >{t("nav.contatti")}</a
+            >
+        </nav>
+        <div class="flex gap-1 items-center pt-4 border-t border-underline/10">
+            <a
+                href={translatePath(currentRoute, "it")}
+                class={`text-[16px] hover:text-header-highlight transition-colors ${lang === "it" ? "text-lang-selected font-semibold" : "text-route"}`}
             >
                 ITA
             </a>
             <span class="text-[16px] opacity-50">|</span>
             <a
-                href={translatePath('/', 'en')}
-                class={`text-[16px] hover:text-header-highlight transition-colors ${lang === 'en' ? 'text-lang-selected font-semibold' : 'text-route'}`}
+                href={translatePath(currentRoute, "en")}
+                class={`text-[16px] hover:text-header-highlight transition-colors ${lang === "en" ? "text-lang-selected font-semibold" : "text-route"}`}
             >
                 ENG
             </a>
         </div>
-        <button id="theme-switch-btn" class="focus:outline-none">
-            <img
-                id="theme-icon"
-                width="35"
-                height="35"
-                class="block ml-4 rounded-full shrink-0 object-cover cursor-pointer dark:invert"
-                draggable="false"
-                src="src/assets/commons/mode-switch.svg"
-            />
-        </button>
     </div>
 </header>
 
 <script>
+    const leftBanner = document.getElementById("leftBanner");
     const searchToggleBtn = document.getElementById("search-toggle-btn");
     const searchContainer = document.getElementById("search-container");
     const searchInput = document.getElementById(
@@ -139,28 +252,63 @@ const translatePath = useTranslatedPath(lang);
     const closeIcon = document.getElementById("close-icon");
 
     const themeSwitchBtn = document.getElementById("theme-switch-btn");
-    const themeIcon = document.getElementById("theme-icon");
 
-    if (searchToggleBtn && searchContainer && searchIcon && closeIcon) {
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const menuCloseIcon = document.getElementById("menu-close-icon");
+
+    const mobileSearchContainer = document.getElementById("mobile-search-container");
+    const mobileSearchInput = document.getElementById("mobile-search-input") as HTMLInputElement | null;
+
+    leftBanner?.addEventListener("click", () => {
+        window.location.href = "https://github.com/ShyVortex";
+    });
+
+    if (searchToggleBtn && searchContainer && searchIcon && closeIcon && mobileSearchContainer) {
         searchToggleBtn.addEventListener("click", () => {
-            const isClosed = searchContainer.classList.contains("w-0");
-            if (isClosed) {
-                // Espandi la barra di ricerca
-                searchContainer.classList.remove("w-0", "opacity-0");
-                searchContainer.classList.add("w-40", "opacity-100");
-                // Cambia l'icona in X
-                searchIcon.classList.add("hidden");
-                closeIcon.classList.remove("hidden");
-                // Metti a fuoco l'input
-                setTimeout(() => searchInput?.focus(), 150);
+            // Se la larghezza dello schermo è inferiore a md (768px), usiamo la barra mobile sotto l'header
+            const isMobile = window.innerWidth < 768;
+
+            if (isMobile) {
+                const isClosed = mobileSearchContainer.classList.contains("hidden");
+                if (isClosed) {
+                    // Chiudi il menu mobile se è aperto
+                    if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+                        mobileMenu.classList.add("hidden");
+                        mobileMenu.classList.remove("flex");
+                        menuIcon?.classList.remove("hidden");
+                        menuCloseIcon?.classList.add("hidden");
+                    }
+                    // Mostra la barra di ricerca mobile
+                    mobileSearchContainer.classList.remove("hidden");
+                    mobileSearchContainer.classList.add("flex");
+                    searchIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                    setTimeout(() => mobileSearchInput?.focus(), 150);
+                } else {
+                    // Nascondi la barra di ricerca mobile
+                    mobileSearchContainer.classList.add("hidden");
+                    mobileSearchContainer.classList.remove("flex");
+                    searchIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                    if (mobileSearchInput) mobileSearchInput.value = "";
+                }
             } else {
-                // Nascondi la barra di ricerca
-                searchContainer.classList.remove("w-40", "opacity-100");
-                searchContainer.classList.add("w-0", "opacity-0");
-                // Ripristina l'icona lente
-                searchIcon.classList.remove("hidden");
-                closeIcon.classList.add("hidden");
-                if (searchInput) searchInput.value = "";
+                const isClosed = searchContainer.classList.contains("w-0");
+                if (isClosed) {
+                    searchContainer.classList.remove("w-0", "opacity-0");
+                    searchContainer.classList.add("w-40", "opacity-100");
+                    searchIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                    setTimeout(() => searchInput?.focus(), 150);
+                } else {
+                    searchContainer.classList.remove("w-40", "opacity-100");
+                    searchContainer.classList.add("w-0", "opacity-0");
+                    searchIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                    if (searchInput) searchInput.value = "";
+                }
             }
         });
     }
@@ -174,6 +322,31 @@ const translatePath = useTranslatedPath(lang);
             } else {
                 document.documentElement.classList.add("dark");
                 localStorage.setItem("theme", "dark");
+            }
+        });
+    }
+
+    if (mobileMenuBtn && mobileMenu && menuIcon && menuCloseIcon) {
+        mobileMenuBtn.addEventListener("click", () => {
+            const isHidden = mobileMenu.classList.contains("hidden");
+            if (isHidden) {
+                // Chiudi la ricerca mobile se è aperta
+                if (mobileSearchContainer && !mobileSearchContainer.classList.contains("hidden")) {
+                    mobileSearchContainer.classList.add("hidden");
+                    mobileSearchContainer.classList.remove("flex");
+                    searchIcon?.classList.remove("hidden");
+                    closeIcon?.classList.add("hidden");
+                }
+                
+                mobileMenu.classList.remove("hidden");
+                mobileMenu.classList.add("flex");
+                menuIcon.classList.add("hidden");
+                menuCloseIcon.classList.remove("hidden");
+            } else {
+                mobileMenu.classList.add("hidden");
+                mobileMenu.classList.remove("flex");
+                menuIcon.classList.remove("hidden");
+                menuCloseIcon.classList.add("hidden");
             }
         });
     }

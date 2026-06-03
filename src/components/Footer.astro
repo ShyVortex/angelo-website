@@ -11,14 +11,14 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <footer
-    class="bg-bg-footer text-main py-4 px-6 shadow-sm grid grid-cols-2 items-center"
+    class="bg-bg-footer text-main py-8 px-6 md:px-20 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
 >
-    <div class="pl-20 pt-5 pb-5 flex flex-col select-none justify-self-start">
+    <div class="flex flex-col select-none justify-self-start">
         <span class="text-[20px] font-semibold leading-tight"
             >Angelo Trotta</span
         >
         <span class="text-[12px] opacity-80">Web & Software Developer</span>
-        <span class="mt-10 text-[14px] text-route">
+        <span class="mt-6 text-[14px] text-route">
             {t("footer.rights")}<br />
             {t("footer.source")}
             <a
@@ -31,8 +31,8 @@ const translatePath = useTranslatedPath(lang);
             {t("footer.source_suffix2")}
         </span>
     </div>
-    <div class="pl-20 pt-5 pb-5 flex flex-col select-none justify-self-start">
-        <nav class="flex gap-6 justify-self-center">
+    <div class="flex flex-col select-none justify-self-start md:items-end">
+        <nav class="flex flex-wrap gap-4 md:gap-6 justify-start md:justify-end">
             <a
                 href={translatePath("/")}
                 class="text-[20px] text-route hover:text-header-highlight transition-colors"
@@ -69,7 +69,7 @@ const translatePath = useTranslatedPath(lang);
                 >GitHub</a
             >
         </nav>
-        <span class="mt-10 text-[14px] text-route">
+        <span class="mt-6 text-[14px] text-route md:text-right">
             {t("footer.accessibility_prefix")}
             <a
                 href="https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32019L0882"
@@ -79,7 +79,7 @@ const translatePath = useTranslatedPath(lang);
                 >{t("footer.accessibility_link")}
             </a>
         </span>
-        <span class="mt-2 text-[14px] text-route">
+        <span class="mt-2 text-[14px] text-route md:text-left">
             <a href="#" class="text-footer-highlight hover:underline"
                 >{t("footer.privacy")}</a
             >
