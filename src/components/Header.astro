@@ -49,24 +49,114 @@
         >
     </nav>
     <div class="flex items-center justify-self-end">
-        <img
-            width="35"
-            height="35"
-            class="block mr-4 rounded-full shrink-0 object-cover dark:invert cursor-pointer"
-            draggable="false"
-            src="src/assets/commons/search.svg"
-        />
+        <!-- Barra di ricerca espandibile -->
+        <div
+            id="search-container"
+            class="flex items-center transition-all duration-300 w-0 opacity-0 overflow-hidden mr-2"
+        >
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Cerca..."
+                class="bg-transparent border-b border-main focus:outline-none py-1 px-2 text-[16px] w-40 text-main"
+            />
+        </div>
+
+        <button
+            id="search-toggle-btn"
+            class="focus:outline-none flex items-center justify-center w-[35px] h-[35px] mr-4 cursor-pointer"
+            aria-label="Cerca"
+        >
+            <img
+                id="search-icon"
+                width="35"
+                height="35"
+                class="block rounded-full shrink-0 object-cover dark:invert"
+                draggable="false"
+                src="src/assets/commons/search.svg"
+                alt="Search"
+            />
+            <svg
+                id="close-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                class="hidden text-main dark:text-white"
+            >
+                <path
+                    d="M18 6L6 18M6 6l12 12"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+            </svg>
+        </button>
+
         <div>
             <span class="text-[16px]">ITA</span>
             <span class="text-[16px]">|</span>
             <span class="text-[16px]">ENG</span>
         </div>
-        <img
-            width="35"
-            height="35"
-            class="block ml-4 rounded-full shrink-0 object-cover dark:invert cursor-pointer"
-            draggable="false"
-            src="src/assets/commons/mode-switch.svg"
-        />
+        <button id="theme-switch-btn" class="focus:outline-none">
+            <img
+                id="theme-icon"
+                width="35"
+                height="35"
+                class="block ml-4 rounded-full shrink-0 object-cover cursor-pointer dark:invert"
+                draggable="false"
+                src="src/assets/commons/mode-switch.svg"
+            />
+        </button>
     </div>
 </header>
+
+<script>
+    const searchToggleBtn = document.getElementById("search-toggle-btn");
+    const searchContainer = document.getElementById("search-container");
+    const searchInput = document.getElementById(
+        "search-input",
+    ) as HTMLInputElement | null;
+    const searchIcon = document.getElementById("search-icon");
+    const closeIcon = document.getElementById("close-icon");
+
+    const themeSwitchBtn = document.getElementById("theme-switch-btn");
+    const themeIcon = document.getElementById("theme-icon");
+
+    if (searchToggleBtn && searchContainer && searchIcon && closeIcon) {
+        searchToggleBtn.addEventListener("click", () => {
+            const isClosed = searchContainer.classList.contains("w-0");
+            if (isClosed) {
+                // Espandi la barra di ricerca
+                searchContainer.classList.remove("w-0", "opacity-0");
+                searchContainer.classList.add("w-40", "opacity-100");
+                // Cambia l'icona in X
+                searchIcon.classList.add("hidden");
+                closeIcon.classList.remove("hidden");
+                // Metti a fuoco l'input
+                setTimeout(() => searchInput?.focus(), 150);
+            } else {
+                // Nascondi la barra di ricerca
+                searchContainer.classList.remove("w-40", "opacity-100");
+                searchContainer.classList.add("w-0", "opacity-0");
+                // Ripristina l'icona lente
+                searchIcon.classList.remove("hidden");
+                closeIcon.classList.add("hidden");
+                if (searchInput) searchInput.value = "";
+            }
+        });
+    }
+
+    if (themeSwitchBtn) {
+        themeSwitchBtn.addEventListener("click", () => {
+            const isDark = document.documentElement.classList.contains("dark");
+            if (isDark) {
+                document.documentElement.classList.remove("dark");
+                localStorage.setItem("theme", "light");
+            } else {
+                document.documentElement.classList.add("dark");
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    }
+</script>
