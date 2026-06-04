@@ -36,6 +36,7 @@
     --color-bg-footer: var(--footer-bg);
     --color-main: var(--text);
     --color-route: var(--routes-text);
+    --color-highlight: var(--header-text-highlight);
     --color-header-highlight: var(--header-text-highlight);
     --color-footer-highlight: var(--footer-text-highlight);
     --color-underline: var(--text-underline);

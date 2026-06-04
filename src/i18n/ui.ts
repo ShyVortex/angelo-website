@@ -21,6 +21,12 @@ export const ui = {
     "footer.accessibility_prefix": "Sito web accessibile - ",
     "footer.accessibility_link": "Direttiva (UE) 2019/882 \"European Accessibility Act (EAA)\"",
     "footer.privacy": "Informativa sulla Privacy",
+    "home.welcome": "Benvenuto/a sul sito web di Angelo Trotta",
+    "home.about_me": "A proposito di me...",
+    "home.bio_short": "Ciao! Sono Angelo, uno sviluppatore web e software con la passione per la creazione di applicazioni web moderne, veloci e accessibili. Adoro trasformare idee complesse in codice pulito e interfacce utente intuitive.",
+    "home.btn_bio": "Biografia completa",
+    "home.btn_cv": "Curriculum vitae",
+    "home.btn_skills": "Mie competenze",
   },
   en: {
     "nav.home": "Home",
@@ -37,6 +43,12 @@ export const ui = {
     "footer.accessibility_prefix": "Accessible website - ",
     "footer.accessibility_link": "Directive (EU) 2019/882 \"European Accessibility Act (EAA)\"",
     "footer.privacy": "Privacy Policy",
+    "home.welcome": "Welcome to Angelo Trotta's website",
+    "home.about_me": "About me...",
+    "home.bio_short": "Hi! I'm Angelo, a web and software developer passionate about creating modern, fast, and accessible web applications. I love turning complex ideas into clean code and intuitive user interfaces.",
+    "home.btn_bio": "Full biography",
+    "home.btn_cv": "Resume / CV",
+    "home.btn_skills": "My skills",
   },
 } as const;
 

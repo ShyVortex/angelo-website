@@ -17,28 +17,31 @@ const lang = getLangFromUrl(Astro.url);
 		<title>Angelo Trotta | Portfolio</title>
 		<script is:inline>
 			const theme = (() => {
-				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-					return localStorage.getItem('theme');
+				if (
+					typeof localStorage !== "undefined" &&
+					localStorage.getItem("theme")
+				) {
+					return localStorage.getItem("theme");
 				}
-				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					return 'dark';
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					return "dark";
 				}
-				return 'light';
+				return "light";
 			})();
-		
-			if (theme === 'dark') {
-				document.documentElement.classList.add('dark');
+
+			if (theme === "dark") {
+				document.documentElement.classList.add("dark");
 			} else {
-				document.documentElement.classList.remove('dark');
+				document.documentElement.classList.remove("dark");
 			}
 		</script>
 	</head>
 	<!-- flex flex-col min-h-screen serve per spingere il footer in fondo se la pagina ha poco contenuto -->
-	<body class="flex flex-col min-h-screen">
+	<body class="flex flex-col min-h-screen w-full">
 		<Header />
 
 		<!-- main flex-grow ospita il contenuto specifico di ogni singola pagina -->
-		<main class="flex-grow">
+		<main class="flex-grow w-full">
 			<slot />
 		</main>
 

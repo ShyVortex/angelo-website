@@ -1,0 +1,142 @@
+---
+import {
+    getLangFromUrl,
+    useTranslations,
+    useTranslatedPath,
+} from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<div id="home" class="mt-10 flex justify-center px-4">
+    <div class="text-center max-w-4xl w-full">
+        <h1
+            class="text-4xl md:text-4xl font-bold text-highlight mb-4 drop-shadow-sm"
+        >
+            {t("home.welcome")}
+        </h1>
+        <p class="text-main font-semibold text-lg md:text-xl opacity-90 mb-12">
+            Web & Software Developer
+        </p>
+
+        <div class="flex flex-col items-start text-left w-full">
+            <p class="text-main font-medium text-lg mb-4 pl-1">
+                {t("home.about_me")}
+            </p>
+
+            {/* Presentation Card */}
+            <div
+                class="mb-10 w-full rounded-2xl border border-underline/10 shadow-xl bg-bg-header p-6 md:p-8 backdrop-blur-md transition-all hover:shadow-2xl"
+            >
+                <div
+                    class="flex flex-col md:flex-row items-center md:items-start gap-8"
+                >
+                    {/* Left side: Avatar */}
+                    <div class="shrink-0">
+                        <div class="relative group">
+                            <div
+                                class="absolute -inset-0.5 bg-gradient-to-r from-highlight to-lang-selected rounded-full blur opacity-30 group-hover:opacity-60 transition duration-300"
+                            >
+                            </div>
+                            <img
+                                src="src/assets/commons/avatar2.png"
+                                alt="Angelo Trotta"
+                                class="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-highlight shadow-md shrink-0"
+                                draggable="false"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Right side: Info */}
+                    <div class="flex-1 flex flex-col justify-between h-full">
+                        <div>
+                            <h2
+                                class="text-2xl font-bold text-main mb-3 text-center md:text-left"
+                            >
+                                Angelo Trotta
+                            </h2>
+                            <p
+                                class="text-route text-base md:text-lg leading-relaxed mb-6 text-center md:text-left"
+                            >
+                                {t("home.bio_short")}
+                            </p>
+                        </div>
+
+                        {/* Buttons */}
+                        <div
+                            class="flex flex-wrap gap-4 justify-center md:justify-start"
+                        >
+                            {/* Biografia */}
+                            <a
+                                href={translatePath("/biografia")}
+                                class="inline-flex items-center px-5 py-2.5 rounded-full text-[15px] font-medium bg-highlight text-white hover:bg-highlight/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md hover:shadow-lg cursor-pointer"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M11.25 11.25l.041-.02a.75.75 0 111.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                                    ></path>
+                                </svg>
+                                {t("home.btn_bio")}
+                            </a>
+
+                            {/* CV */}
+                            <a
+                                href={translatePath("/cv")}
+                                class="inline-flex items-center px-5 py-2.5 rounded-full text-[15px] font-medium border border-highlight/40 text-highlight hover:bg-highlight/5 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-sm hover:shadow-md cursor-pointer dark:text-header-highlight dark:border-header-highlight/40"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+                                    ></path>
+                                </svg>
+                                {t("home.btn_cv")}
+                            </a>
+
+                            {/* Skills */}
+                            <a
+                                href={translatePath("/skills")}
+                                class="inline-flex items-center px-5 py-2.5 rounded-full text-[15px] font-medium border border-highlight/40 text-highlight hover:bg-highlight/5 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-sm hover:shadow-md cursor-pointer dark:text-header-highlight dark:border-header-highlight/40"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                                    ></path>
+                                </svg>
+                                {t("home.btn_skills")}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

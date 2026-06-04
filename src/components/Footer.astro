@@ -4,10 +4,12 @@ import {
     useTranslations,
     useTranslatedPath,
 } from "../i18n/utils";
+import { getRouteFromUrl } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+const currentRoute = getRouteFromUrl(Astro.url);
 ---
 
 <footer
@@ -35,37 +37,37 @@ const translatePath = useTranslatedPath(lang);
         <nav class="flex flex-wrap gap-4 md:gap-6 justify-start md:justify-end">
             <a
                 href={translatePath("/")}
-                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                class=`text-[20px] hover:text-header-highlight transition-colors ${currentRoute === "" ? "text-header-highlight" : "text-route"}`
                 >{t("nav.home")}</a
             >
             <a
                 href={translatePath("/biografia")}
-                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                class=`text-[20px] hover:text-header-highlight transition-colors ${currentRoute === "biografia" ? "text-header-highlight" : "text-route"}`
                 >{t("nav.biografia")}</a
             >
             <a
                 href={translatePath("/cv")}
-                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                class=`text-[20px] hover:text-header-highlight transition-colors ${currentRoute === "cv" ? "text-header-highlight" : "text-route"}`
                 >{t("nav.cv")}</a
             >
             <a
                 href={translatePath("/skills")}
-                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                class=`text-[20px] hover:text-header-highlight transition-colors ${currentRoute === "skills" ? "text-header-highlight" : "text-route"}`
                 >{t("nav.skills")}</a
             >
             <a
                 href={translatePath("/portfolio")}
-                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                class=`text-[20px] hover:text-header-highlight transition-colors ${currentRoute === "portfolio" ? "text-header-highlight" : "text-route"}`
                 >{t("nav.portfolio")}</a
             >
             <a
                 href={translatePath("/contatti")}
-                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                class=`text-[20px] hover:text-header-highlight transition-colors ${currentRoute === "contatti" ? "text-header-highlight" : "text-route"}`
                 >{t("nav.contatti")}</a
             >
             <a
                 href={"https://github.com/ShyVortex"}
-                class="text-[20px] text-route hover:text-header-highlight transition-colors"
+                class=`text-[20px] text-route hover:text-header-highlight transition-colors`
                 >GitHub</a
             >
         </nav>
