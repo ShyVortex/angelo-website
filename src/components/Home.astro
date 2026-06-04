@@ -4,6 +4,7 @@ import {
     useTranslations,
     useTranslatedPath,
 } from "../i18n/utils";
+import Card from "./Card.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -136,6 +137,42 @@ const translatePath = useTranslatedPath(lang);
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-start text-left w-full mb-10">
+            <p class="text-main font-medium text-lg mb-4 pl-1">
+                {t("home.for_you")}
+            </p>
+            <div
+                class="flex flex-col md:grid md:grid-cols-3 items-stretch gap-2 md:gap-8 text-left w-full h-full mb-10"
+            >
+                <Card
+                    iconName="mdi:internet"
+                    title="Siti e applicazioni web"
+                    description="Progettazione e sviluppo di siti e applicazioni web responsivi
+                    e/o adattivi secondo i più recenti criteri standard di usabilità e accessibilità."
+                />
+                <Card
+                    iconName="mdi:server"
+                    title="Gestionali e applicazioni server"
+                    description="Sviluppo di portali gestionali privati con sicurezza e crittografia,
+                    o applicazioni server di vario tipo."
+                />
+                <Card
+                    iconName="icon-park-outline:system"
+                    title="Modernizzazione vecchi sistemi"
+                    description="Ristrutturazione e messa a nuovo di vecchi sistemi software, refactoring
+                    parziale o completo, riscrittura in un nuovo linguaggio e/o framework."
+                />
+                <Card
+                    iconName="tabler:seo"
+                    title="Consulenza SEO"
+                    description="Ottimizzazione dei siti web orientata ad aumentare la visibilità sui
+                    motori di ricerca tramite le più moderne tecniche di posizionamento."
+                />
+                <Card title="Prova" description="Prova" />
+                <Card title="Prova" description="Prova" />
             </div>
         </div>
     </div>

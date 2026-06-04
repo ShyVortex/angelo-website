@@ -27,6 +27,7 @@ export const ui = {
     "home.btn_bio": "Biografia completa",
     "home.btn_cv": "Curriculum vitae",
     "home.btn_skills": "Mie competenze",
+    "home.for_you": "Cosa posso fare per voi?"
   },
   en: {
     "nav.home": "Home",
@@ -49,6 +50,7 @@ export const ui = {
     "home.btn_bio": "Full biography",
     "home.btn_cv": "Resume / CV",
     "home.btn_skills": "My skills",
+    "home.for_you": "What can I do for you?"
   },
 } as const;
 
