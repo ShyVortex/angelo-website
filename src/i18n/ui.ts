@@ -54,7 +54,7 @@ export const ui = {
     "home.card.project.clap_title": "Neural CLAP",
     "home.card.project.clap_desc": "Suite di classificazione CLI avanzata progettata per analizzare il feedback degli utenti proveniente dagli app store per dispositivi mobili.",
     "home.card.project.dftool_title": "Diffusion Tool",
-    "home.card.project.dftool_desc": "Applicazione JavaFX che integra l'interprete Python e lo utilizza per implementare pipeline di diffusione stabile per l'IA generativa, oltre all'upscaling e al modello di degradazione BSRGAN per l'upscaling di qualsiasi immagine."
+    "home.card.project.dftool_desc": "Applicazione JavaFX che integra l'interprete Python e lo utilizza per implementare pipeline di stable diffusion per l'IA generativa, oltre all'upscaling e al modello di degradazione BSRGAN per l'upscaling di qualsiasi immagine."
   },
   en: {
     "nav.home": "Home",
