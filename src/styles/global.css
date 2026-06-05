@@ -8,6 +8,7 @@
     --background: #F5F0E9;
     --header-bg: #FFFCF8;
     --footer-bg: #F2F2F2;
+    --card-bg: #E5EAEC;
     --text: #000000;
     --routes-text: #000000;
     --header-text-highlight: #268CBD;
@@ -21,6 +22,7 @@
     --background: #020617;
     --header-bg: #0C1326;
     --footer-bg: #0C1326;
+    --card-bg: #0C1326;
     --text: #FFFFFF;
     --routes-text: #808EA1;
     --header-text-highlight: #9DC0CF;
@@ -34,6 +36,7 @@
     --color-bg-main: var(--background);
     --color-bg-header: var(--header-bg);
     --color-bg-footer: var(--footer-bg);
+    --color-bg-card: var(--card-bg);
     --color-main: var(--text);
     --color-route: var(--routes-text);
     --color-highlight: var(--header-text-highlight);

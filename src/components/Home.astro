@@ -29,13 +29,13 @@ const translatePath = useTranslatedPath(lang);
 
             {/* Presentation Card */}
             <div
-                class="mb-10 w-full rounded-2xl border border-underline/10 shadow-xl bg-bg-header p-6 md:p-8 backdrop-blur-md transition-all hover:shadow-2xl"
+                class="mb-10 w-full rounded-2xl border border-underline/10 shadow-xl bg-bg-card p-6 md:p-8 transition-colors transition-shadow duration-300 hover:shadow-2xl"
             >
                 <div
                     class="flex flex-col md:flex-row items-center md:items-start gap-8"
                 >
                     {/* Left side: Avatar */}
-                    <div class="shrink-0">
+                    <div class="shrink-0 my-auto">
                         <div class="relative group">
                             <div
                                 class="absolute -inset-0.5 bg-gradient-to-r from-highlight to-lang-selected rounded-full blur opacity-30 group-hover:opacity-60 transition duration-300"
@@ -149,30 +149,34 @@ const translatePath = useTranslatedPath(lang);
             >
                 <Card
                     iconName="mdi:internet"
-                    title="Siti e applicazioni web"
-                    description="Progettazione e sviluppo di siti e applicazioni web responsivi
-                    e/o adattivi secondo i più recenti criteri standard di usabilità e accessibilità."
+                    title={t("home.card_web_title")}
+                    description={t("home.card_web_desc")}
                 />
                 <Card
                     iconName="mdi:server"
-                    title="Gestionali e applicazioni server"
-                    description="Sviluppo di portali gestionali privati con sicurezza e crittografia,
-                    o applicazioni server di vario tipo."
+                    title={t("home.card_server_title")}
+                    description={t("home.card_server_desc")}
                 />
                 <Card
                     iconName="icon-park-outline:system"
-                    title="Modernizzazione vecchi sistemi"
-                    description="Ristrutturazione e messa a nuovo di vecchi sistemi software, refactoring
-                    parziale o completo, riscrittura in un nuovo linguaggio e/o framework."
+                    title={t("home.card_legacy_title")}
+                    description={t("home.card_legacy_desc")}
                 />
                 <Card
                     iconName="tabler:seo"
-                    title="Consulenza SEO"
-                    description="Ottimizzazione dei siti web orientata ad aumentare la visibilità sui
-                    motori di ricerca tramite le più moderne tecniche di posizionamento."
+                    title={t("home.card_seo_title")}
+                    description={t("home.card_seo_desc")}
                 />
-                <Card title="Prova" description="Prova" />
-                <Card title="Prova" description="Prova" />
+                <Card
+                    iconName="mdi:laptop"
+                    title={t("home.card_support_title")}
+                    description={t("home.card_support_desc")}
+                />
+                <Card
+                    iconName="mdi:toolbox"
+                    title={t("home.card_other_title")}
+                    description={t("home.card_other_desc")}
+                />
             </div>
         </div>
     </div>
