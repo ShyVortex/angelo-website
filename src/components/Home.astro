@@ -72,7 +72,7 @@ const translatePath = useTranslatedPath(lang);
                             {/* Biografia */}
                             <a
                                 href={translatePath("/biografia")}
-                                class="inline-flex items-center px-5 py-2.5 rounded-full text-[15px] font-medium bg-highlight text-white hover:bg-highlight/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md hover:shadow-lg cursor-pointer"
+                                class="inline-flex items-center px-5 py-2.5 rounded-full text-[15px] font-medium bg-btn-highlight text-white hover:bg-btn-highlight/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md hover:shadow-lg cursor-pointer"
                             >
                                 <svg
                                     class="w-5 h-5 mr-2"
@@ -140,7 +140,7 @@ const translatePath = useTranslatedPath(lang);
             </div>
         </div>
 
-        <div class="flex flex-col items-start text-left w-full mb-10">
+        <div class="flex flex-col items-start text-left w-full mb-5">
             <p class="text-main font-medium text-lg mb-4 pl-1">
                 {t("home.for_you")}
             </p>
@@ -176,6 +176,65 @@ const translatePath = useTranslatedPath(lang);
                     iconName="mdi:toolbox"
                     title={t("home.card_other_title")}
                     description={t("home.card_other_desc")}
+                />
+            </div>
+        </div>
+
+        <div class="flex flex-col items-start text-left w-full mb-10">
+            <p class="text-main font-medium text-lg mb-4 pl-1">
+                {t("home.projects")}
+                <a
+                    class="ml-2 text-[16px] text-header-highlight"
+                    href={translatePath("/portfolio")}
+                >
+                    {t("home.projects_link")}
+                </a>
+            </p>
+            <div
+                class="flex flex-col md:grid md:grid-cols-3 items-stretch gap-2 md:gap-8 text-left w-full h-full mb-10"
+            >
+                <Card
+                    iconName="mdi:internet"
+                    title={t("home.card.project.saca_title")}
+                    description={t("home.card.project.saca_desc")}
+                    tags={["Angular 21", "NestJS", "jose", "Docker"]}
+                />
+                <Card
+                    iconName="mdi:laptop"
+                    title={t("home.card.project.blossom_title")}
+                    description={t("home.card.project.blossom_desc")}
+                    tags={[
+                        "C",
+                        "Shell",
+                        "Python",
+                        "Woodpecker",
+                        "CI/CD",
+                        "Forgejo",
+                    ]}
+                />
+                <Card
+                    iconName="mdi:internet"
+                    title={t("home.card.project.consortium_title")}
+                    description={t("home.card.project.consortium_desc")}
+                    tags={["Angular", "Android", "iOS"]}
+                />
+                <Card
+                    iconName="mdi:internet"
+                    title={t("home.card.project.b121_title")}
+                    description={t("home.card.project.b121_desc")}
+                    tags={["PHP", "WordPress", "Plugins"]}
+                />
+                <Card
+                    iconName="mdi:server"
+                    title={t("home.card.project.clap_title")}
+                    description={t("home.card.project.clap_desc")}
+                    tags={["Python", "AI", "LLMs", "Fine-tuning"]}
+                />
+                <Card
+                    iconName="mdi:server"
+                    title={t("home.card.project.dftool_title")}
+                    description={t("home.card.project.dftool_desc")}
+                    tags={["Java", "Python", "AI", "LLMs", "Pipelines"]}
                 />
             </div>
         </div>

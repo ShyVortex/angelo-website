@@ -117,14 +117,14 @@ const currentRoute = getRouteFromUrl(Astro.url);
             <div class="hidden md:flex gap-1 items-center">
                 <a
                     href={translatePath(currentRoute, "it")}
-                    class={`text-[16px] hover:text-header-highlight transition-colors ${lang === "it" ? "text-lang-selected font-semibold" : "text-route"}`}
+                    class={`text-[16px] hover:text-header-highlight transition-colors ${lang === "it" ? "text-header-highlight font-semibold" : "text-route"}`}
                 >
                     ITA
                 </a>
                 <span class="text-[16px] opacity-50">|</span>
                 <a
                     href={translatePath(currentRoute, "en")}
-                    class={`text-[16px] hover:text-header-highlight transition-colors ${lang === "en" ? "text-lang-selected font-semibold" : "text-route"}`}
+                    class={`text-[16px] hover:text-header-highlight transition-colors ${lang === "en" ? "text-header-highlight font-semibold" : "text-route"}`}
                 >
                     ENG
                 </a>
