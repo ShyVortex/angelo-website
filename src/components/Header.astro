@@ -5,6 +5,9 @@ import {
     useTranslatedPath,
     getRouteFromUrl,
 } from "../i18n/utils";
+import avatarImg from "../assets/commons/avatar.png";
+import searchIconImg from "../assets/commons/search.svg";
+import themeIconImg from "../assets/commons/mode-switch.svg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -25,7 +28,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
                 height="50"
                 class="block mr-4 rounded-full shrink-0 object-cover"
                 draggable="false"
-                src="src/assets/commons/avatar.png"
+                src={avatarImg.src}
             />
             <div class="flex flex-col">
                 <span
@@ -94,7 +97,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
                     height="35"
                     class="block rounded-full shrink-0 object-cover dark:invert"
                     draggable="false"
-                    src="src/assets/commons/search.svg"
+                    src={searchIconImg.src}
                     alt="Search"
                 />
                 <svg
@@ -136,7 +139,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
                     height="35"
                     class="block ml-1 md:ml-4 rounded-full shrink-0 object-cover cursor-pointer dark:invert"
                     draggable="false"
-                    src="src/assets/commons/mode-switch.svg"
+                    src={themeIconImg.src}
                 />
             </button>
             <button

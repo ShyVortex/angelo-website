@@ -3,8 +3,9 @@ import {
     getLangFromUrl,
     useTranslations,
     useTranslatedPath,
-} from "../i18n/utils";
-import Card from "./Card.astro";
+} from "../../i18n/utils";
+import Card from "../Card.astro";
+import avatar2Img from "../../assets/commons/avatar2.png";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -43,7 +44,7 @@ const translatePath = useTranslatedPath(lang);
                             >
                             </div>
                             <img
-                                src="src/assets/commons/avatar2.png"
+                                src={avatar2Img.src}
                                 alt="Angelo Trotta"
                                 class="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-highlight shadow-md shrink-0"
                                 draggable="false"

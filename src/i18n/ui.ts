@@ -21,6 +21,7 @@ export const ui = {
     "footer.accessibility_prefix": "Sito web accessibile - ",
     "footer.accessibility_link": "Direttiva (UE) 2019/882 \"European Accessibility Act (EAA)\"",
     "footer.privacy": "Informativa sulla Privacy",
+    "wip": "Pagina in sviluppo...",
     "home.welcome": "Benvenuto/a sul sito web di Angelo Trotta",
     "home.about_me": "A proposito di me...",
     "home.bio_short": "Sono uno sviluppatore software con una forte passione per la tecnologia e l'innovazione. Attualmente sto completando la Laurea Magistrale in Sicurezza dei Sistemi Software presso l'Università degli Studi del Molise, coniugando solide basi accademiche con competenze pratiche nello sviluppo e nella protezione dei sistemi informatici.",
@@ -70,6 +71,7 @@ export const ui = {
     "footer.accessibility_prefix": "Accessible website - ",
     "footer.accessibility_link": "Directive (EU) 2019/882 \"European Accessibility Act (EAA)\"",
     "footer.privacy": "Privacy Policy",
+    "wip": "Page in development...",
     "home.welcome": "Welcome to Angelo Trotta's website",
     "home.about_me": "About me...",
     "home.bio_short": "I'm a software developer with a strong passion for technology and innovation. I'm currently completing my Master's Degree in Software Systems Security at the University of Molise, combining a solid academic foundation with practical skills in developing and protecting IT systems.",
@@ -119,6 +121,6 @@ export const routes = {
     "cv": "resume",
     "skills": "skills",
     "portfolio": "portfolio",
-    "contatti": "contact",
+    "contatti": "contacts",
   },
 } as const;
