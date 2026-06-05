@@ -62,7 +62,7 @@ export const ui = {
     "nav.cv": "Resume",
     "nav.skills": "Skills",
     "nav.portfolio": "Portfolio",
-    "nav.contatti": "Contact",
+    "nav.contatti": "Contacts",
     "search.placeholder": "Search...",
     "footer.rights": "© 2026 Angelo Trotta · All rights reserved.",
     "footer.source": "The source code is available on",

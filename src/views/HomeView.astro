@@ -3,9 +3,9 @@ import {
     getLangFromUrl,
     useTranslations,
     useTranslatedPath,
-} from "../../i18n/utils";
-import Card from "../Card.astro";
-import avatar2Img from "../../assets/commons/avatar2.png";
+} from "../i18n/utils";
+import Card from "../components/Card.astro";
+import avatar2Img from "../assets/commons/avatar2.png";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
