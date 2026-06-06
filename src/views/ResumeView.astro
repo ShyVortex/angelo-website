@@ -4,19 +4,112 @@ import {
     useTranslations,
     useTranslatedPath,
 } from "../i18n/utils";
-import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const pdfUrl =
+    lang === "en"
+        ? "https://cdn.jsdelivr.net/gh/ShyVortex/angelo-resume@main/Build/main-en.pdf"
+        : "https://cdn.jsdelivr.net/gh/ShyVortex/angelo-resume@main/Build/main-it.pdf";
+
+const alternativePdfUrl =
+    lang === "en"
+        ? "https://cdn.jsdelivr.net/gh/ShyVortex/angelo-resume@main/Build/main-it.pdf"
+        : "https://cdn.jsdelivr.net/gh/ShyVortex/angelo-resume@main/Build/main-en.pdf";
 ---
 
-<div id="resume" class="mt-10 flex justify-center px-4">
-    <div class="text-center max-w-5xl w-full">
-        <h1
-            class="text-4xl md:text-4xl font-bold text-main mb-4 drop-shadow-sm"
-        >
-            {t("wip")}
+<div
+    id="resume"
+    class="mt-10 flex flex-col items-center justify-center px-4 w-full mb-20"
+>
+    <div
+        class="text-center max-w-5xl w-full reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out"
+    >
+        <h1 class="text-4xl font-bold text-highlight mb-4 drop-shadow-sm">
+            {t("nav.cv")}
         </h1>
+        <p class="text-main font-semibold text-lg md:text-xl opacity-90 mb-8">
+            {t("cv.desc")}
+        </p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div
+        class="flex flex-wrap gap-4 justify-center mb-8 w-full max-w-5xl reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+    >
+        <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 rounded-full text-base font-semibold bg-btn-highlight text-white hover:bg-btn-highlight/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md hover:shadow-lg cursor-pointer"
+        >
+            <Icon name="mdi:file-pdf-box" class="w-6 h-6 mr-2" />
+            {lang === "en" ? "View CV (English)" : "Visualizza CV (Italiano)"}
+        </a>
+
+        <a
+            href={alternativePdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 rounded-full text-base font-semibold border border-highlight/40 text-highlight hover:bg-highlight/5 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-sm hover:shadow-md cursor-pointer dark:text-header-highlight dark:border-header-highlight/40"
+        >
+            <Icon name="mdi:translate" class="w-6 h-6 mr-2" />
+            {lang === "en" ? "View CV (Italian)" : "Visualizza CV (Inglese)"}
+        </a>
+    </div>
+
+    <!-- PDF Embedded Viewer -->
+    <div
+        class="mt-8 w-full max-w-5xl h-[75vh] rounded-2xl border border-underline/10 shadow-2xl bg-bg-card overflow-hidden mb-12 hidden md:block reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+    >
+        <object
+            data={`${pdfUrl}#toolbar=1`}
+            type="application/pdf"
+            class="w-full h-full border-0"
+        >
+            <div
+                class="flex flex-col items-center justify-center h-full p-8 text-center"
+            >
+                <p class="text-main font-semibold mb-4">
+                    {t("cv.browser_error")}
+                </p>
+            </div>
+        </object>
     </div>
 </div>
+
+<script>
+    function initReveal() {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove(
+                            "opacity-0",
+                            "translate-y-8",
+                            "translate-y-6",
+                        );
+                        entry.target.classList.add(
+                            "opacity-100",
+                            "translate-y-0",
+                        );
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.05,
+                rootMargin: "0px 0px -20px 0px",
+            },
+        );
+
+        const elements = document.querySelectorAll(".reveal-on-scroll");
+        elements.forEach((el) => observer.observe(el));
+    }
+
+    initReveal();
+    document.addEventListener("astro:after-swap", initReveal);
+</script>

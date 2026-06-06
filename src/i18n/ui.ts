@@ -63,7 +63,9 @@ export const ui = {
     "bio.hobbies_title": "Hobby e interessi",
     "bio.hobbies_desc": "Nel tempo libero mi dedico allo sviluppo di <b>progetti personali</b> guidati dai miei interessi, utilizzandoli come opportunità per ampliare le mie competenze su diversi framework come <b>Angular</b>, <b>Astro</b>, <b>React</b> e <b>Django</b>. Appassionato di <b>gaming</b> fin dall'infanzia, amo immergermi nell'esplorazione interattiva di opere videoludiche per coglierne appieno l'essenza. Prediligo in particolare i titoli con una forte <b>componente narrativa</b>, capaci di coinvolgere profondamente e trasmettere forti emozioni.",
     "bio.info_title": "Altre informazioni",
-    "bio.info_desc": "Essendo attualmente uno studente, la mia priorità principale è il completamento del mio <b>percorso di studi</b>. Di conseguenza, in ambito lavorativo, sono aperto a valutare esclusivamente opportunità ed esperienze professionali da svolgersi interamente <b>da remoto</b>."
+    "bio.info_desc": "Essendo attualmente uno studente, la mia priorità principale è il completamento del mio <b>percorso di studi</b>. Di conseguenza, in ambito lavorativo, sono aperto a valutare esclusivamente opportunità ed esperienze professionali da svolgersi interamente <b>da remoto</b>.",
+    "cv.desc": "Il mio curriculum vitae in italiano e inglese",
+    "cv.browser_error": "Il tuo browser non supporta l'incorporamento dei PDF. Utilizza i pulsanti sopra per visualizzare il CV."
   },
   en: {
     "nav.home": "Home",
@@ -122,7 +124,9 @@ export const ui = {
     "bio.hobbies_title": "Hobbies and interests",
     "bio.hobbies_desc": "In my spare time, I dedicate myself to developing <b>personal projects</b> driven by my interests, using them as opportunities to expand my technical knowledge of various frameworks such as <b>Angular</b>, <b>Astro</b>, <b>React</b>, and <b>Django</b>. As a lifelong <b>gaming</b> enthusiast, I love immersing myself in the interactive exploration of video games to fully appreciate their essence. I particularly lean toward titles with a strong <b>narrative component</b> that can deeply engage the player and evoke powerful emotions.",
     "bio.info_title": "More information",
-    "bio.info_desc": "As I am currently a student, my main priority is completing my <b>academic path</b>. Consequently, regarding professional opportunities, I am currently only open to accepting roles and experiences that can be conducted entirely <b>remote</b>."
+    "bio.info_desc": "As I am currently a student, my main priority is completing my <b>academic path</b>. Consequently, regarding professional opportunities, I am currently only open to accepting roles and experiences that can be conducted entirely <b>remote</b>.",
+    "cv.desc": "My curriculum vitae in English and Italian",
+    "cv.browser_error": "Your browser does not support embedding PDFs. Please use the button above to view the CV"
   },
 } as const;
 
