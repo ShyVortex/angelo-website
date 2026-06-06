@@ -19,9 +19,10 @@ const currentRoute = getRouteFromUrl(Astro.url);
     <div
         class="py-4 px-6 flex justify-between items-center md:grid md:grid-cols-3"
     >
-        <div
+        <a
             id="leftBanner"
             class="flex items-center select-none justify-self-start cursor-pointer"
+            href={translatePath("/")}
         >
             <img
                 width="50"
@@ -39,7 +40,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
                     >Web & Software Developer</span
                 >
             </div>
-        </div>
+        </a>
         <nav class="hidden md:flex gap-6 justify-self-center">
             <a
                 href={translatePath("/")}
@@ -246,7 +247,6 @@ const currentRoute = getRouteFromUrl(Astro.url);
 </header>
 
 <script>
-    const leftBanner = document.getElementById("leftBanner");
     const searchToggleBtn = document.getElementById("search-toggle-btn");
     const searchContainer = document.getElementById("search-container");
     const searchInput = document.getElementById(
@@ -268,10 +268,6 @@ const currentRoute = getRouteFromUrl(Astro.url);
     const mobileSearchInput = document.getElementById(
         "mobile-search-input",
     ) as HTMLInputElement | null;
-
-    leftBanner?.addEventListener("click", () => {
-        window.open("https://github.com/ShyVortex", "_blank");
-    });
 
     if (
         searchToggleBtn &&
