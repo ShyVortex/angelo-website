@@ -1,0 +1,266 @@
+[
+  {
+    "id": "html5",
+    "name": "HTML5 & CSS3",
+    "category": "languages",
+    "rating": 5,
+    "icon": "mdi:language-html5",
+    "tags": [
+      "Semantics",
+      "SEO",
+      "Responsive",
+      "Flexbox/Grid"
+    ]
+  },
+  {
+    "id": "typescript",
+    "name": "JavaScript & TypeScript",
+    "category": "languages",
+    "rating": 4.5,
+    "icon": "mdi:language-typescript",
+    "tags": [
+      "ES6+",
+      "Async/Await",
+      "OOP",
+      "DOM Manipulation"
+    ]
+  },
+  {
+    "id": "php",
+    "name": "PHP",
+    "category": "languages",
+    "rating": 3,
+    "icon": "mdi:language-php",
+    "tags": [
+      "OOP",
+      "MVC",
+      "REST APIs",
+      "WordPress Dev"
+    ]
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "category": "languages",
+    "rating": 4.5,
+    "icon": "mdi:language-python",
+    "tags": [
+      "AI",
+      "LLMs",
+      "Automation",
+      "Data Science"
+    ]
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "category": "languages",
+    "rating": 4,
+    "icon": "mdi:language-java",
+    "tags": [
+      "OOP",
+      "JavaFX",
+      "Multithreading",
+      "Desktop Apps"
+    ]
+  },
+  {
+    "id": "c_bash",
+    "name": "C & Bash Shell",
+    "category": "languages",
+    "rating": 4,
+    "icon": "mdi:bash",
+    "tags": [
+      "Linux Scripts",
+      "Automation",
+      "System Dev"
+    ]
+  },
+  {
+    "id": "sql",
+    "name": "SQL & Databases",
+    "category": "languages",
+    "rating": 4,
+    "icon": "mdi:database",
+    "tags": [
+      "MySQL",
+      "PostgreSQL",
+      "Queries",
+      "Optimization"
+    ]
+  },
+  {
+    "id": "angular",
+    "name": "Angular",
+    "category": "frameworks",
+    "rating": 5,
+    "icon": "mdi:angular",
+    "tags": [
+      "SPA",
+      "RxJS",
+      "Services",
+      "Directives",
+      "Signals"
+    ]
+  },
+  {
+    "id": "nestjs",
+    "name": "NestJS",
+    "category": "frameworks",
+    "rating": 3,
+    "icon": "simple-icons:nestjs",
+    "tags": [
+      "Node.js",
+      "TypeScript",
+      "REST APIs",
+      "BFF"
+    ]
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "category": "frameworks",
+    "rating": 3.5,
+    "icon": "mdi:react",
+    "tags": [
+      "Hooks",
+      "Context API",
+      "Component Architecture"
+    ]
+  },
+  {
+    "id": "astro",
+    "name": "Astro",
+    "category": "frameworks",
+    "rating": 4,
+    "icon": "simple-icons:astro",
+    "tags": [
+      "Islands Architecture",
+      "SSG",
+      "Performance",
+      "i18n"
+    ]
+  },
+  {
+    "id": "django",
+    "name": "Django",
+    "category": "frameworks",
+    "rating": 3.5,
+    "icon": "simple-icons:django",
+    "tags": [
+      "Python Web",
+      "ORM",
+      "Admin Panel",
+      "MVC"
+    ]
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind CSS",
+    "category": "frameworks",
+    "rating": 4.5,
+    "icon": "mdi:tailwind",
+    "tags": [
+      "Utility-First",
+      "Responsive Design",
+      "Modern UI"
+    ]
+  },
+  {
+    "id": "linux",
+    "name": "Linux (Debian/Ubuntu/FOSS)",
+    "category": "systems_devops",
+    "rating": 4.5,
+    "icon": "mdi:linux",
+    "tags": [
+      "System Admin",
+      "Shell Scripting",
+      "DevOps"
+    ]
+  },
+  {
+    "id": "docker",
+    "name": "Docker & Container",
+    "category": "systems_devops",
+    "rating": 4,
+    "icon": "mdi:docker",
+    "tags": [
+      "Containers",
+      "Docker Compose",
+      "Microservices"
+    ]
+  },
+  {
+    "id": "cicd",
+    "name": "CI/CD & Automation",
+    "category": "systems_devops",
+    "rating": 4,
+    "icon": "mdi:git",
+    "tags": [
+      "GitHub Actions",
+      "Woodpecker CI",
+      "Pipelines"
+    ]
+  },
+  {
+    "id": "git",
+    "name": "Git & Version Control",
+    "category": "systems_devops",
+    "rating": 4.5,
+    "icon": "mdi:github",
+    "tags": [
+      "Git Flow",
+      "Collaboration",
+      "Forgejo/GitHub"
+    ]
+  },
+  {
+    "id": "wordpress",
+    "name": "WordPress & CMS",
+    "category": "tools_design",
+    "rating": 4.5,
+    "icon": "mdi:wordpress",
+    "tags": [
+      "CMS",
+      "Prestashop",
+      "Drupal",
+      "Themes/Plugins"
+    ]
+  },
+  {
+    "id": "blender",
+    "name": "Blender (3D Graphics)",
+    "category": "tools_design",
+    "rating": 4,
+    "icon": "simple-icons:blender",
+    "tags": [
+      "3D Modeling",
+      "Rendering",
+      "Texturing"
+    ]
+  },
+  {
+    "id": "adobe_suite",
+    "name": "Photoshop & Illustrator",
+    "category": "tools_design",
+    "rating": 3,
+    "icon": "simple-icons:adobephotoshop",
+    "tags": [
+      "Vector Graphics",
+      "UI Design",
+      "GIMP"
+    ]
+  },
+  {
+    "id": "seo_analytics",
+    "name": "SEO & Google Tools",
+    "category": "tools_design",
+    "rating": 4,
+    "icon": "tabler:seo",
+    "tags": [
+      "Search Console",
+      "Analytics",
+      "Performance"
+    ]
+  }
+]

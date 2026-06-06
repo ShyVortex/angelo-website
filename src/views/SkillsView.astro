@@ -1,22 +1,108 @@
 ---
-import {
-    getLangFromUrl,
-    useTranslations,
-    useTranslatedPath,
-} from "../i18n/utils";
-import Layout from "../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import skillsData from "../resources/skills.json";
+import Card from "../components/Card.astro";
+import Pagination from "../components/skills/Pagination.astro";
+import EmptyState from "../components/skills/EmptyState.astro";
+import FiltersControlPanel from "../components/skills/FiltersControlPanel.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
+
+interface SkillRaw {
+    id: string;
+    name: string;
+    category: string;
+    rating: number;
+    icon: string;
+    tags: string[];
+}
+
+const skills = skillsData as SkillRaw[];
 ---
 
-<div id="skills" class="mt-10 flex justify-center px-4">
+<div
+    id="skills"
+    class="mt-10 mb-5 flex flex-col items-center justify-center px-4 w-full"
+>
     <div class="text-center max-w-5xl w-full">
-        <h1
-            class="text-4xl md:text-4xl font-bold text-main mb-4 drop-shadow-sm"
-        >
-            {t("wip")}
+        <h1 class="text-4xl font-bold text-highlight mb-4 drop-shadow-sm">
+            {t("nav.skills")}
         </h1>
+        <p
+            class="text-route max-w-2xl mx-auto text-base md:text-lg mb-8 leading-relaxed"
+        >
+            {t("skills.subtitle")}
+        </p>
     </div>
+
+    <FiltersControlPanel />
+    <Pagination />
+
+    <!-- Skills Grid -->
+    <div
+        id="skills-grid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full mb-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+    >
+        {
+            skills.map((skill) => {
+                const name = t(`skills.${skill.id}.name` as any) || skill.name;
+                const desc = t(`skills.${skill.id}.desc` as any);
+                const searchTerms =
+                    `${name} ${desc} ${skill.tags.join(" ")}`.toLowerCase();
+
+                return (
+                    <div
+                        class="skill-card"
+                        data-category={skill.category}
+                        data-search={searchTerms}
+                    >
+                        <Card
+                            layout="left"
+                            iconName={skill.icon}
+                            title={name}
+                            description={desc}
+                            tags={skill.tags}
+                            rating={skill.rating}
+                            ratingLabel={t("skills.level")}
+                        />
+                    </div>
+                );
+            })
+        }
+    </div>
+
+    <!-- Activates if no skill is found -->
+    <EmptyState />
 </div>
+
+<style>
+    /* Styling active state for tab buttons */
+    .category-tab.active {
+        background-color: var(--btn-highlight);
+        color: #ffffff;
+        border-color: var(--btn-highlight);
+        box-shadow: 0 4px 12px rgba(38, 140, 189, 0.25);
+    }
+
+    .category-tab.active:hover {
+        background-color: var(--btn-highlight);
+        color: #ffffff;
+        opacity: 0.95;
+    }
+</style>
+
+<style is:global>
+    /* Global styles for dynamic page buttons in pagination container */
+    .page-btn.active {
+        background-color: var(--btn-highlight);
+        color: #ffffff;
+        border-color: var(--btn-highlight);
+        box-shadow: 0 4px 12px rgba(38, 140, 189, 0.25);
+    }
+</style>
+
+<script>
+    import "../scripts/RenderOnScroll.ts";
+    import "../scripts/SkillsFilter.ts";
+</script>

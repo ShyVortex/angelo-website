@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div
+    id="skills-pagination"
+    class="flex items-center justify-center gap-2 mb-8 hidden reveal-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out"
+>
+    <button
+        id="pag-prev"
+        class="p-2.5 rounded-xl border border-underline/10 bg-bg-card hover:border-highlight/30 hover:bg-highlight/5 text-route disabled:opacity-35 disabled:pointer-events-none active:scale-95 transition-all cursor-pointer"
+        aria-label="Pagina precedente"
+    >
+        <Icon name="mdi:chevron-left" width="20px" height="20px" />
+    </button>
+    <div id="pag-numbers" class="flex items-center gap-2"></div>
+    <button
+        id="pag-next"
+        class="p-2.5 rounded-xl border border-underline/10 bg-bg-card hover:border-highlight/30 hover:bg-highlight/5 text-route disabled:opacity-35 disabled:pointer-events-none active:scale-95 transition-all cursor-pointer"
+        aria-label="Pagina successiva"
+    >
+        <Icon name="mdi:chevron-right" width="20px" height="20px" />
+    </button>
+</div>

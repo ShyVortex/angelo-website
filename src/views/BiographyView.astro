@@ -1,38 +1,39 @@
 ---
-import {
-    getLangFromUrl,
-    useTranslations,
-    useTranslatedPath,
-} from "../i18n/utils";
-import Layout from "../layouts/Layout.astro";
-import avatar2Img from "../assets/commons/avatar2.png";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import avatar2Img from "../assets/avatar2.png";
 import { Icon } from "astro-icon/components";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
 
 <div
     id="biografia"
     class="mt-10 flex flex-col items-center justify-center px-4"
 >
-    <div class="text-center max-w-5xl w-full reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out">
+    <div
+        class="text-center max-w-5xl w-full reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out"
+    >
         <h1
             class="text-4xl md:text-4xl font-bold text-highlight mb-4 drop-shadow-sm"
         >
             {t("nav.biografia")}
         </h1>
     </div>
-    
-    <div class="flex flex-col items-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-750 ease-out">
+
+    <div
+        class="flex flex-col items-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-750 ease-out"
+    >
         <img
             src={avatar2Img.src}
             alt="Angelo Trotta"
             class="mt-8 w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-highlight shadow-md shrink-0"
             draggable="false"
         />
-        <p class="mt-8 text-center max-w-4xl w-full" set:html={t("bio.summary")} />
+        <p
+            class="mt-8 text-center max-w-4xl w-full"
+            set:html={t("bio.summary")}
+        />
     </div>
 
     <div
@@ -73,31 +74,4 @@ const translatePath = useTranslatedPath(lang);
     </div>
 </div>
 
-<script>
-    function initReveal() {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.remove("opacity-0", "translate-y-8", "translate-y-6");
-                        entry.target.classList.add("opacity-100", "translate-y-0");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.05,
-                rootMargin: "0px 0px -20px 0px",
-            }
-        );
-
-        const elements = document.querySelectorAll(".reveal-on-scroll");
-        elements.forEach((el) => observer.observe(el));
-    }
-
-    // Run on initial load
-    initReveal();
-
-    // Support Astro view transitions if active
-    document.addEventListener("astro:after-swap", initReveal);
-</script>
+<script is:inline type="module" src="src/scripts/RenderOnScroll.ts"></script>

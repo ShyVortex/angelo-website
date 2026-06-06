@@ -81,35 +81,4 @@ const alternativePdfUrl =
     </div>
 </div>
 
-<script>
-    function initReveal() {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.remove(
-                            "opacity-0",
-                            "translate-y-8",
-                            "translate-y-6",
-                        );
-                        entry.target.classList.add(
-                            "opacity-100",
-                            "translate-y-0",
-                        );
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.05,
-                rootMargin: "0px 0px -20px 0px",
-            },
-        );
-
-        const elements = document.querySelectorAll(".reveal-on-scroll");
-        elements.forEach((el) => observer.observe(el));
-    }
-
-    initReveal();
-    document.addEventListener("astro:after-swap", initReveal);
-</script>
+<script is:inline type="module" src="src/scripts/RenderOnScroll.ts"></script>

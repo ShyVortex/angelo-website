@@ -5,7 +5,7 @@ import {
     useTranslatedPath,
 } from "../i18n/utils";
 import Card from "../components/Card.astro";
-import avatar2Img from "../assets/commons/avatar2.png";
+import avatar2Img from "../assets/avatar2.png";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -13,20 +13,26 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <div id="home" class="mt-10 flex justify-center px-4">
-    <!-- max-w-5xl è la lunghezza orizzontale del contenitore principale -->
+    <!-- max-w-5xl is the horizontal length of the main container -->
     <div class="text-center max-w-5xl w-full">
-        <div class="reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out">
+        <div
+            class="reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out"
+        >
             <h1
                 class="text-4xl md:text-4xl font-bold text-highlight mb-4 drop-shadow-sm"
             >
                 {t("home.welcome")}
             </h1>
-            <p class="text-main font-semibold text-lg md:text-xl opacity-90 mb-12">
+            <p
+                class="text-main font-semibold text-lg md:text-xl opacity-90 mb-12"
+            >
                 Web & Software Developer
             </p>
         </div>
 
-        <div class="flex flex-col items-start text-left w-full reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+        <div
+            class="flex flex-col items-start text-left w-full reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+        >
             <p class="text-main font-medium text-lg mb-4 pl-1">
                 {t("home.about_me")}
             </p>
@@ -144,49 +150,63 @@ const translatePath = useTranslatedPath(lang);
             </div>
         </div>
 
-        <div class="flex flex-col items-start text-left w-full mb-5 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+        <div
+            class="flex flex-col items-start text-left w-full mb-5 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+        >
             <p class="text-main font-medium text-lg mb-4 pl-1">
                 {t("home.for_you")}
             </p>
             <div
                 class="flex flex-col md:grid md:grid-cols-3 items-stretch gap-2 md:gap-8 text-left w-full h-full mb-10"
             >
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:internet"
                         title={t("home.card_web_title")}
                         description={t("home.card_web_desc")}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:server"
                         title={t("home.card_server_title")}
                         description={t("home.card_server_desc")}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="icon-park-outline:system"
                         title={t("home.card_legacy_title")}
                         description={t("home.card_legacy_desc")}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="tabler:seo"
                         title={t("home.card_seo_title")}
                         description={t("home.card_seo_desc")}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:laptop"
                         title={t("home.card_support_title")}
                         description={t("home.card_support_desc")}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:toolbox"
                         title={t("home.card_other_title")}
@@ -196,7 +216,9 @@ const translatePath = useTranslatedPath(lang);
             </div>
         </div>
 
-        <div class="flex flex-col items-start text-left w-full mb-10 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+        <div
+            class="flex flex-col items-start text-left w-full mb-10 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+        >
             <p class="text-main font-medium text-lg mb-4 pl-1">
                 {t("home.projects")}
                 <a
@@ -209,7 +231,9 @@ const translatePath = useTranslatedPath(lang);
             <div
                 class="flex flex-col md:grid md:grid-cols-3 items-stretch gap-2 md:gap-8 text-left w-full h-full mb-10"
             >
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:internet"
                         title={t("home.card.project.saca_title")}
@@ -217,7 +241,9 @@ const translatePath = useTranslatedPath(lang);
                         tags={["Angular 21", "NestJS", "jose", "Docker"]}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:laptop"
                         title={t("home.card.project.blossom_title")}
@@ -232,7 +258,9 @@ const translatePath = useTranslatedPath(lang);
                         ]}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:internet"
                         title={t("home.card.project.consortium_title")}
@@ -240,7 +268,9 @@ const translatePath = useTranslatedPath(lang);
                         tags={["Angular", "Android", "iOS"]}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:internet"
                         title={t("home.card.project.b121_title")}
@@ -248,7 +278,9 @@ const translatePath = useTranslatedPath(lang);
                         tags={["PHP", "WordPress", "Plugins"]}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:server"
                         title={t("home.card.project.clap_title")}
@@ -256,7 +288,9 @@ const translatePath = useTranslatedPath(lang);
                         tags={["Python", "AI", "LLMs", "Fine-tuning"]}
                     />
                 </div>
-                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <div
+                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+                >
                     <Card
                         iconName="mdi:server"
                         title={t("home.card.project.dftool_title")}
@@ -269,31 +303,4 @@ const translatePath = useTranslatedPath(lang);
     </div>
 </div>
 
-<script>
-    function initReveal() {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.remove("opacity-0", "translate-y-8", "translate-y-6");
-                        entry.target.classList.add("opacity-100", "translate-y-0");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.05,
-                rootMargin: "0px 0px -20px 0px",
-            }
-        );
-
-        const elements = document.querySelectorAll(".reveal-on-scroll");
-        elements.forEach((el) => observer.observe(el));
-    }
-
-    // Run on initial load
-    initReveal();
-
-    // Support Astro view transitions if active
-    document.addEventListener("astro:after-swap", initReveal);
-</script>
+<script is:inline type="module" src="src/scripts/RenderOnScroll.ts"></script>

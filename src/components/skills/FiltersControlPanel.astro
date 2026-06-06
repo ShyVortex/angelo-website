@@ -1,0 +1,69 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { Icon } from "astro-icon/components";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+    class="w-full max-w-7xl bg-bg-card/40 border border-underline/10 backdrop-blur-md rounded-3xl p-5 md:p-6 mb-8 shadow-lg reveal-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out"
+>
+    <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <!-- Search Bar -->
+        <div class="relative w-full md:max-w-md">
+            <span
+                class="absolute inset-y-0 left-0 flex items-center pl-4 text-route pointer-events-none"
+            >
+                <Icon name="mdi:magnify" width="22px" height="22px" />
+            </span>
+            <input
+                type="text"
+                id="skill-search"
+                placeholder={t("skills.searchPlaceholder")}
+                class="w-full pl-11 pr-4 py-3 bg-background border border-underline/15 rounded-2xl text-main placeholder-route/60 focus:outline-none focus:border-highlight/60 focus:ring-2 focus:ring-highlight/10 transition-all text-[15px] shadow-inner"
+            />
+            <button
+                id="clear-search"
+                class="absolute inset-y-0 right-0 flex items-center pr-4 text-route/50 hover:text-route hidden"
+                aria-label="Clear search"
+            >
+                <Icon name="mdi:close-circle" width="18px" height="18px" />
+            </button>
+        </div>
+
+        <!-- Categories Tabs -->
+        <div class="flex flex-wrap gap-2 justify-center w-full md:w-auto">
+            <button
+                class="category-tab active px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer transition-all border border-underline/10 hover:border-highlight/30 hover:bg-highlight/5 text-route active:scale-95"
+                data-category="all"
+            >
+                {t("skills.filter.all")}
+            </button>
+            <button
+                class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer transition-all border border-underline/10 hover:border-highlight/30 hover:bg-highlight/5 text-route active:scale-95"
+                data-category="languages"
+            >
+                {t("skills.filter.languages")}
+            </button>
+            <button
+                class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer transition-all border border-underline/10 hover:border-highlight/30 hover:bg-highlight/5 text-route active:scale-95"
+                data-category="frameworks"
+            >
+                {t("skills.filter.frameworks")}
+            </button>
+            <button
+                class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer transition-all border border-underline/10 hover:border-highlight/30 hover:bg-highlight/5 text-route active:scale-95"
+                data-category="systems_devops"
+            >
+                {t("skills.filter.systems_devops")}
+            </button>
+            <button
+                class="category-tab px-4 py-2.5 rounded-xl text-sm font-semibold cursor-pointer transition-all border border-underline/10 hover:border-highlight/30 hover:bg-highlight/5 text-route active:scale-95"
+                data-category="tools_design"
+            >
+                {t("skills.filter.tools_design")}
+            </button>
+        </div>
+    </div>
+</div>
