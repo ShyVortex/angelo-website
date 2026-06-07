@@ -35,12 +35,17 @@ const tagList = tags
 const fullStars = rating ? Math.floor(rating) : 0;
 const hasHalf = rating ? rating % 1 !== 0 : false;
 const emptyStars = rating ? 5 - fullStars - (hasHalf ? 1 : 0) : 0;
+
+// Dynamic tag depending on whether it is a link or not
+const Tag = link ? "a" : "div";
 ---
 
 {
     layout === "centered" ? (
-        <a class="mb-5 h-full w-full justify-center items-center text-center rounded-2xl border border-underline/10 shadow-xl bg-bg-card p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-highlight/30 hover:shadow-2xl"
-        href={link ? link : undefined}>
+        <Tag
+            class="mb-5 block h-full w-full text-center rounded-2xl border border-underline/10 shadow-xl bg-bg-card p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-highlight/30 hover:shadow-2xl"
+            href={link ? link : undefined}
+        >
             {customImg ? customImg : <></>}
             {iconName ? (
                 <Icon
@@ -64,10 +69,12 @@ const emptyStars = rating ? 5 - fullStars - (hasHalf ? 1 : 0) : 0;
                     ))}
                 </div>
             )}
-        </a>
+        </Tag>
     ) : (
-        <a class="h-full w-full flex flex-col justify-between rounded-2xl border border-underline/10 bg-bg-card p-6 md:p-7 transition-all duration-300 hover:border-highlight/30 hover:shadow-2xl hover:-translate-y-1 relative group overflow-hidden"
-        href={link ? link : undefined}>
+        <Tag
+            class="h-full w-full flex flex-col justify-between rounded-2xl border border-underline/10 bg-bg-card p-6 md:p-7 transition-all duration-300 hover:border-highlight/30 hover:shadow-2xl hover:-translate-y-1 relative group overflow-hidden"
+            href={link ? link : undefined}
+        >
             {/* Decorative Background Accent */}
             <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-gradient-to-br from-highlight/5 to-lang-selected/5 rounded-full blur-xl group-hover:scale-150 transition-all duration-500 pointer-events-none" />
 
@@ -137,6 +144,6 @@ const emptyStars = rating ? 5 - fullStars - (hasHalf ? 1 : 0) : 0;
                     ))}
                 </div>
             )}
-        </a>
+        </Tag>
     )
 }
