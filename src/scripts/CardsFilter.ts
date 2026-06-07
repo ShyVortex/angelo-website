@@ -1,23 +1,50 @@
-// Client-side interactive filters, search & pagination functionality
-function initSkillsFilter() {
-    const searchInput = document.getElementById("skill-search") as HTMLInputElement;
-    const clearButton = document.getElementById("clear-search") as HTMLButtonElement;
-    const tabs = document.querySelectorAll(".category-tab") as NodeListOf<HTMLElement>;
-    const cards = Array.from(document.querySelectorAll(".skill-card")) as HTMLElement[];
-    const noResults = document.getElementById("no-skills-msg") as HTMLElement | null;
-    const grid = document.getElementById("skills-grid") as HTMLElement | null;
+interface CardsFilterConfig {
+    searchId?: string;
+    clearSearchId?: string;
+    categoryTabClass?: string;
+    cardClass?: string;
+    noResultsId?: string;
+    gridId?: string;
+    paginationContainerId?: string;
+    pagPrevId?: string;
+    pagNextId?: string;
+    pagNumbersId?: string;
+    scrollTargetId?: string;
+}
+
+export function initCardsFilter(config: CardsFilterConfig = {}) {
+    const {
+        searchId = "skill-search",
+        clearSearchId = "clear-search",
+        categoryTabClass = ".category-tab",
+        cardClass = ".card",
+        noResultsId = "no-cards-msg",
+        gridId = "cards-grid",
+        paginationContainerId = "cards-pagination",
+        pagPrevId = "pag-prev",
+        pagNextId = "pag-next",
+        pagNumbersId = "pag-numbers",
+        scrollTargetId = "skills"
+    } = config;
+
+    const searchInput = document.getElementById(searchId) as HTMLInputElement | null;
+    const clearButton = document.getElementById(clearSearchId) as HTMLButtonElement | null;
+    const tabs = document.querySelectorAll(categoryTabClass) as NodeListOf<HTMLElement>;
+    const cards = Array.from(document.querySelectorAll(cardClass)) as HTMLElement[];
+    const noResults = document.getElementById(noResultsId) as HTMLElement | null;
+    const grid = document.getElementById(gridId) as HTMLElement | null;
 
     // Pagination DOM Elements
-    const paginationContainer = document.getElementById("skills-pagination") as HTMLElement | null;
-    const pagPrev = document.getElementById("pag-prev") as HTMLButtonElement | null;
-    const pagNext = document.getElementById("pag-next") as HTMLButtonElement | null;
-    const pagNumbers = document.getElementById("pag-numbers") as HTMLButtonElement | null;
+    const paginationContainer = document.getElementById(paginationContainerId) as HTMLElement | null;
+    const pagPrev = document.getElementById(pagPrevId) as HTMLButtonElement | null;
+    const pagNext = document.getElementById(pagNextId) as HTMLButtonElement | null;
+    const pagNumbers = document.getElementById(pagNumbersId) as HTMLElement | null;
 
     if (!searchInput) return;
 
     let currentPage: number = 1;
     const itemsPerPage: number = 9;
-    let filteredCards: any[] = [];
+    let filteredCards: HTMLElement[] = [];
 
     function displayPage(page: number) {
         currentPage = page;
@@ -64,7 +91,7 @@ function initSkillsFilter() {
                 btn.className = `page-btn px-4 py-2 rounded-xl text-sm font-semibold cursor-pointer transition-all border border-underline/10 bg-bg-card text-route hover:border-highlight/30 hover:bg-highlight/5 active:scale-95 ${i === currentPage ? "active" : ""}`;
                 btn.addEventListener("click", () => {
                     displayPage(i);
-                    document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+                    document.getElementById(scrollTargetId)?.scrollIntoView({ behavior: "smooth" });
                 });
                 pagNumbers.appendChild(btn);
             }
@@ -72,9 +99,9 @@ function initSkillsFilter() {
     }
 
     function filter() {
-        const query = searchInput.value.toLowerCase().trim();
+        const query = (searchInput as HTMLInputElement).value.toLowerCase().trim();
         const activeTab =
-            (document.querySelector(".category-tab.active") as HTMLElement)?.dataset
+            (document.querySelector(`${categoryTabClass}.active`) as HTMLElement | null)?.dataset
                 .category || "all";
 
         // Find all matching cards
@@ -126,7 +153,7 @@ function initSkillsFilter() {
     pagPrev?.addEventListener("click", () => {
         if (currentPage > 1) {
             displayPage(currentPage - 1);
-            document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+            document.getElementById(scrollTargetId)?.scrollIntoView({ behavior: "smooth" });
         }
     });
 
@@ -134,7 +161,7 @@ function initSkillsFilter() {
         const totalPages = Math.ceil(filteredCards.length / itemsPerPage);
         if (currentPage < totalPages) {
             displayPage(currentPage + 1);
-            document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+            document.getElementById(scrollTargetId)?.scrollIntoView({ behavior: "smooth" });
         }
     });
 
@@ -160,9 +187,3 @@ function initSkillsFilter() {
     // Execute initial filter
     filter();
 }
-
-// Run on initial load
-initSkillsFilter();
-
-// Support Astro View Transitions page swaps
-document.addEventListener("astro:after-swap", initSkillsFilter);

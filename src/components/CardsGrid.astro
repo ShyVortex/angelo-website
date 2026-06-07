@@ -1,0 +1,50 @@
+---
+import Card from "./Card.astro";
+import type { CardRaw } from "../types/CardRaw";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+    cards: CardRaw[];
+    translationPrefix?: string;
+}
+
+const { cards, translationPrefix = "card" } = Astro.props;
+---
+
+<div
+    id="cards-grid"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full mb-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
+>
+    {
+        cards.map((card: CardRaw) => {
+            const name = t(`${translationPrefix}.${card.id}.name` as any) || card.name;
+            const desc = t(`${translationPrefix}.${card.id}.desc` as any);
+            const searchTerms =
+                `${name} ${desc} ${card.tags.join(" ")}`.toLowerCase();
+
+            return (
+                <div
+                    class="card"
+                    data-category={card.category}
+                    data-search={searchTerms}
+                >
+                    <Card
+                        layout="left"
+                        iconName={card.icon}
+                        title={name}
+                        description={desc}
+                        tags={card.tags}
+                        rating={card.rating ? card.rating : undefined}
+                        ratingLabel={
+                            card.rating ? t("skills.level") : undefined
+                        }
+                    />
+                </div>
+            );
+        })
+    }
+</div>

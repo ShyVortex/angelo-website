@@ -1,24 +1,16 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import skillsData from "../resources/skills.json";
-import Card from "../components/Card.astro";
-import Pagination from "../components/skills/Pagination.astro";
-import EmptyState from "../components/skills/EmptyState.astro";
-import FiltersControlPanel from "../components/skills/FiltersControlPanel.astro";
+import Pagination from "../components/Pagination.astro";
+import EmptyState from "../components/EmptyState.astro";
+import FiltersControlPanel from "../components/FiltersControlPanel.astro";
+import type { CardRaw } from "../types/CardRaw";
+import CardsGrid from "../components/CardsGrid.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-interface SkillRaw {
-    id: string;
-    name: string;
-    category: string;
-    rating: number;
-    icon: string;
-    tags: string[];
-}
-
-const skills = skillsData as SkillRaw[];
+const skills = skillsData as CardRaw[];
 ---
 
 <div
@@ -36,44 +28,23 @@ const skills = skillsData as SkillRaw[];
         </p>
     </div>
 
-    <FiltersControlPanel />
+    <FiltersControlPanel
+        translationPrefix="skills"
+        categories={[
+            "all",
+            "languages",
+            "frameworks",
+            "systems_devops",
+            "tools_design",
+        ]}
+    />
     <Pagination />
 
     <!-- Skills Grid -->
-    <div
-        id="skills-grid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full mb-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
-    >
-        {
-            skills.map((skill) => {
-                const name = t(`skills.${skill.id}.name` as any) || skill.name;
-                const desc = t(`skills.${skill.id}.desc` as any);
-                const searchTerms =
-                    `${name} ${desc} ${skill.tags.join(" ")}`.toLowerCase();
-
-                return (
-                    <div
-                        class="skill-card"
-                        data-category={skill.category}
-                        data-search={searchTerms}
-                    >
-                        <Card
-                            layout="left"
-                            iconName={skill.icon}
-                            title={name}
-                            description={desc}
-                            tags={skill.tags}
-                            rating={skill.rating}
-                            ratingLabel={t("skills.level")}
-                        />
-                    </div>
-                );
-            })
-        }
-    </div>
+    <CardsGrid cards={skills} translationPrefix="skills" />
 
     <!-- Activates if no skill is found -->
-    <EmptyState />
+    <EmptyState translationPrefix="skills" />
 </div>
 
 <style>
@@ -104,5 +75,24 @@ const skills = skillsData as SkillRaw[];
 
 <script>
     import "../scripts/RenderOnScroll.ts";
-    import "../scripts/SkillsFilter.ts";
+    import { initCardsFilter } from "../scripts/CardsFilter.ts";
+
+    function runFilter() {
+        initCardsFilter({
+            searchId: "skill-search",
+            clearSearchId: "clear-search",
+            categoryTabClass: ".category-tab",
+            cardClass: ".card",
+            noResultsId: "no-cards-msg",
+            gridId: "cards-grid",
+            paginationContainerId: "cards-pagination",
+            pagPrevId: "pag-prev",
+            pagNextId: "pag-next",
+            pagNumbersId: "pag-numbers",
+            scrollTargetId: "skills"
+        });
+    }
+
+    runFilter();
+    document.addEventListener("astro:after-swap", runFilter);
 </script>

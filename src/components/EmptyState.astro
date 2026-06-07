@@ -1,0 +1,25 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { Icon } from "astro-icon/components";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+    translationPrefix: string;
+}
+
+const { translationPrefix = "card" } = Astro.props;
+---
+
+<div id="no-cards-msg" class="text-center py-12 px-4 max-w-md hidden">
+    <Icon
+        name="mdi:alert-circle-outline"
+        width="48px"
+        height="48px"
+        class="mx-auto text-route/40 mb-3"
+    />
+    <p class="text-route font-medium text-lg">
+        {t(`${translationPrefix}.noResults` as any)}
+    </p>
+</div>
