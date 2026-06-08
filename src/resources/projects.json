@@ -137,6 +137,7 @@
         "name": "BlossomOS DevOps",
         "category": "devops",
         "icon": "mdi:microsoft-azure-devops",
+        "link": "https://git.blossomos.org/ShyVortex?tab=activity",
         "tags": [
             "C",
             "Shell",

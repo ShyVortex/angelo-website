@@ -47,6 +47,7 @@ const Tag = link ? "a" : "div";
         <Tag
             class="mb-5 block h-full w-full text-center rounded-2xl border border-underline/10 shadow-xl bg-bg-card p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-highlight/30 hover:shadow-2xl"
             href={link ? link : undefined}
+            target={link ? '_blank' : undefined}
         >
             {customImg ? customImg : <></>}
             {iconName ? (
@@ -76,6 +77,7 @@ const Tag = link ? "a" : "div";
         <Tag
             class="h-full w-full flex flex-col justify-between rounded-2xl border border-underline/10 bg-bg-card p-6 md:p-7 transition-all duration-300 hover:border-highlight/30 hover:shadow-2xl hover:-translate-y-1 relative group overflow-hidden"
             href={link ? link : undefined}
+            target={link ? '_blank' : undefined}
         >
             {/* Decorative Background Accent */}
             <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-gradient-to-br from-highlight/5 to-lang-selected/5 rounded-full blur-xl group-hover:scale-150 transition-all duration-500 pointer-events-none" />
