@@ -14,9 +14,12 @@ interface Props {
 
 const { cards, translationPrefix = "card", layout = "left" } = Astro.props;
 
+// Copy array to avoid mutating the original array passed as a prop
+const sortedCards = [...cards];
+
 // If cards have date property, sort in descending order
-if (cards.some((card) => card.date)) {
-    cards.sort((a, b) => {
+if (sortedCards.some((card) => card.date)) {
+    sortedCards.sort((a, b) => {
         // Convert DD/MM/YYYY to YYYY-MM-DD
         const [dayA, monthA, yearA] = a.date!.split("/");
         const [dayB, monthB, yearB] = b.date!.split("/");
@@ -35,7 +38,7 @@ if (cards.some((card) => card.date)) {
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl w-full mb-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
 >
     {
-        cards.map((card: CardRaw) => {
+        sortedCards.map((card: CardRaw) => {
             let name: string = "";
 
             if (typeof card.name === "string") {
