@@ -6,10 +6,16 @@ import {
 } from "../i18n/utils";
 import Card from "../components/Card.astro";
 import avatar2Img from "../assets/avatar2.png";
+import projectsData from "../resources/projects.json";
+import type { CardRaw } from "../types/CardRaw";
+import CardsGrid from "../components/CardsGrid.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const recentSize: number = 6; // amount of projects that I want to show in home
+const projects = (projectsData as CardRaw[]).slice(0, recentSize);
 ---
 
 <div id="home" class="mt-10 flex justify-center px-4">
@@ -228,81 +234,39 @@ const translatePath = useTranslatedPath(lang);
                     {t("home.projects_link")}
                 </a>
             </p>
-            <div
-                class="flex flex-col md:grid md:grid-cols-3 items-stretch gap-2 md:gap-8 text-left w-full h-full mb-10"
-            >
-                <div
-                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
-                >
-                    <Card
-                        iconName="mdi:internet"
-                        title={t("home.card.project.saca_title")}
-                        description={t("home.card.project.saca_desc")}
-                        tags={["Angular 21", "NestJS", "jose", "Docker"]}
-                    />
-                </div>
-                <div
-                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
-                >
-                    <Card
-                        iconName="mdi:laptop"
-                        title={t("home.card.project.blossom_title")}
-                        description={t("home.card.project.blossom_desc")}
-                        tags={[
-                            "C",
-                            "Shell",
-                            "Python",
-                            "Woodpecker",
-                            "CI/CD",
-                            "Forgejo",
-                        ]}
-                    />
-                </div>
-                <div
-                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
-                >
-                    <Card
-                        iconName="mdi:internet"
-                        title={t("home.card.project.consortium_title")}
-                        description={t("home.card.project.consortium_desc")}
-                        tags={["Angular", "Android", "iOS"]}
-                    />
-                </div>
-                <div
-                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
-                >
-                    <Card
-                        iconName="mdi:internet"
-                        title={t("home.card.project.b121_title")}
-                        description={t("home.card.project.b121_desc")}
-                        tags={["PHP", "WordPress", "Plugins"]}
-                    />
-                </div>
-                <div
-                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
-                >
-                    <Card
-                        iconName="mdi:server"
-                        title={t("home.card.project.clap_title")}
-                        description={t("home.card.project.clap_desc")}
-                        tags={["Python", "AI", "LLMs", "Fine-tuning"]}
-                    />
-                </div>
-                <div
-                    class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out"
-                >
-                    <Card
-                        iconName="mdi:server"
-                        title={t("home.card.project.dftool_title")}
-                        description={t("home.card.project.dftool_desc")}
-                        tags={["Java", "Python", "AI", "LLMs", "Pipelines"]}
-                    />
-                </div>
-            </div>
+            <CardsGrid
+                translationPrefix="portfolio"
+                cards={projects}
+                layout="centered"
+            />
         </div>
     </div>
 </div>
 
+<style is:global>
+    @import "../styles/cards-grid.css";
+</style>
+
 <script>
     import "../scripts/RenderOnScroll.ts";
+    import { initCardsFilter } from "../scripts/CardsFilter.ts";
+
+    function runFilter() {
+        initCardsFilter({
+            searchId: "skill-search",
+            clearSearchId: "clear-search",
+            categoryTabClass: ".category-tab",
+            cardClass: ".card",
+            noResultsId: "no-cards-msg",
+            gridId: "cards-grid",
+            paginationContainerId: "cards-pagination",
+            pagPrevId: "pag-prev",
+            pagNextId: "pag-next",
+            pagNumbersId: "pag-numbers",
+            scrollTargetId: "skills",
+        });
+    }
+
+    runFilter();
+    document.addEventListener("astro:after-swap", runFilter);
 </script>

@@ -48,30 +48,8 @@ const skills = skillsData as CardRaw[];
     <EmptyState translationPrefix="skills" />
 </div>
 
-<style>
-    /* Styling active state for tab buttons */
-    .category-tab.active {
-        background-color: var(--btn-highlight);
-        color: #ffffff;
-        border-color: var(--btn-highlight);
-        box-shadow: 0 4px 12px rgba(38, 140, 189, 0.25);
-    }
-
-    .category-tab.active:hover {
-        background-color: var(--btn-highlight);
-        color: #ffffff;
-        opacity: 0.95;
-    }
-</style>
-
 <style is:global>
-    /* Global styles for dynamic page buttons in pagination container */
-    .page-btn.active {
-        background-color: var(--btn-highlight);
-        color: #ffffff;
-        border-color: var(--btn-highlight);
-        box-shadow: 0 4px 12px rgba(38, 140, 189, 0.25);
-    }
+    @import "../styles/cards-grid.css";
 </style>
 
 <script>

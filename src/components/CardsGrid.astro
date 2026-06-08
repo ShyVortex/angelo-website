@@ -9,9 +9,11 @@ const t = useTranslations(lang);
 interface Props {
     cards: CardRaw[];
     translationPrefix?: string;
+    layout?: "left" | "centered";
 }
 
-const { cards, translationPrefix = "card" } = Astro.props;
+const { cards, translationPrefix = "card", layout = "left" } = Astro.props;
+
 
 // If cards have date property, sort in descending order
 if (cards.some((card) => card.date)) {
@@ -48,7 +50,7 @@ if (cards.some((card) => card.date)) {
                     data-search={searchTerms}
                 >
                     <Card
-                        layout="left"
+                        layout={layout}
                         iconName={card.icon}
                         title={name}
                         description={desc}
