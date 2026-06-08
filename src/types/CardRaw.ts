@@ -1,6 +1,11 @@
+export type LocalString = {
+    it: string;
+    en: string;
+}
+
 export type CardRaw = {
     id: string;
-    name: string;
+    name: string | LocalString;
     category: string;
     rating?: number;
     icon: string;

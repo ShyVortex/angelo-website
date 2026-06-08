@@ -1,6 +1,6 @@
 ---
 import Card from "./Card.astro";
-import type { CardRaw } from "../types/CardRaw";
+import type { CardRaw, LocalString } from "../types/CardRaw";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -13,7 +13,6 @@ interface Props {
 }
 
 const { cards, translationPrefix = "card", layout = "left" } = Astro.props;
-
 
 // If cards have date property, sort in descending order
 if (cards.some((card) => card.date)) {
@@ -37,8 +36,24 @@ if (cards.some((card) => card.date)) {
 >
     {
         cards.map((card: CardRaw) => {
-            const name =
-                t(`${translationPrefix}.${card.id}.name` as any) || card.name;
+            let name: string = "";
+
+            if (typeof card.name === "string") {
+                name =
+                    t(`${translationPrefix}.${card.id}.name` as any) ||
+                    (card.name as string);
+            } else if (typeof card.name === "object") {
+                if (lang === "it") {
+                    name =
+                        t(`${translationPrefix}.${card.id}.name.it` as any) ||
+                        (card.name.it as string);
+                } else if (lang === "en") {
+                    name =
+                        t(`${translationPrefix}.${card.id}.name.en` as any) ||
+                        (card.name.en as string);
+                }
+            }
+
             const desc = t(`${translationPrefix}.${card.id}.desc` as any);
             const searchTerms =
                 `${name} ${desc} ${card.tags.join(" ")}`.toLowerCase();

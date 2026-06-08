@@ -15,7 +15,7 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
 const recentSize: number = 6; // amount of projects that I want to show in home
-const projects = (projectsData as CardRaw[]).slice(0, recentSize);
+const projects = (projectsData as CardRaw[]).slice(-recentSize);
 ---
 
 <div id="home" class="mt-10 flex justify-center px-4">
