@@ -104,6 +104,20 @@
     ]
   },
   {
+    "id": "ionic",
+    "name": "Ionic",
+    "category": "frameworks",
+    "rating": 5,
+    "icon": "simple-icons:ionic",
+    "tags": [
+      "Mobile",
+      "RxJS",
+      "Services",
+      "Directives",
+      "Signals"
+    ]
+  },
+  {
     "id": "nestjs",
     "name": "NestJS",
     "category": "frameworks",
@@ -164,6 +178,18 @@
       "Utility-First",
       "Responsive Design",
       "Modern UI"
+    ]
+  },
+  {
+    "id": "flutter",
+    "name": "Flutter",
+    "category": "frameworks",
+    "rating": 3,
+    "icon": "simple-icons:flutter",
+    "tags": [
+      "Cross-platform",
+      "Riverpod",
+      "Native"
     ]
   },
   {

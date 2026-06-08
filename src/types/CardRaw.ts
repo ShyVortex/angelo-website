@@ -4,5 +4,7 @@ export type CardRaw = {
     category: string;
     rating?: number;
     icon: string;
+    link?: string;
     tags: string[];
+    date?: string;
 }

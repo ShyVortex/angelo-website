@@ -1,22 +1,93 @@
 ---
-import {
-    getLangFromUrl,
-    useTranslations,
-    useTranslatedPath,
-} from "../i18n/utils";
-import Layout from "../layouts/Layout.astro";
+import Pagination from "../components/Pagination.astro";
+import EmptyState from "../components/EmptyState.astro";
+import FiltersControlPanel from "../components/FiltersControlPanel.astro";
+import type { CardRaw } from "../types/CardRaw";
+import CardsGrid from "../components/CardsGrid.astro";
+import projectsData from "../resources/projects.json";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
+
+const projects = projectsData as CardRaw[];
 ---
 
-<div id="portfolio" class="mt-10 flex justify-center px-4">
-    <div class="text-center max-w-5xl w-full">
-        <h1
-            class="text-4xl md:text-4xl font-bold text-main mb-4 drop-shadow-sm"
-        >
-            {t("wip")}
+<div
+    id="portfolio"
+    class="mt-10 mb-5 flex flex-col items-center justify-center px-4 w-full"
+>
+    <div class="text-center max-w-lg w-full">
+        <h1 class="text-4xl font-bold text-highlight mb-4 drop-shadow-sm">
+            {t("nav.portfolio")}
         </h1>
+        <p
+            class="text-route max-w-2xl mx-auto text-base md:text-lg mb-10 leading-relaxed"
+        >
+            {t("portfolio.subtitle")}
+        </p>
     </div>
+
+    <FiltersControlPanel
+        translationPrefix="portfolio"
+        categories={["all", "web", "desktop", "mobile", "cli", "devops"]}
+    />
+
+    <Pagination />
+
+    <!-- Projects Grid -->
+    <CardsGrid cards={projects} translationPrefix="portfolio" />
+
+    <!-- Activates if no skill is found -->
+    <EmptyState translationPrefix="portfolio" />
 </div>
+
+<style>
+    /* Styling active state for tab buttons */
+    .category-tab.active {
+        background-color: var(--btn-highlight);
+        color: #ffffff;
+        border-color: var(--btn-highlight);
+        box-shadow: 0 4px 12px rgba(38, 140, 189, 0.25);
+    }
+
+    .category-tab.active:hover {
+        background-color: var(--btn-highlight);
+        color: #ffffff;
+        opacity: 0.95;
+    }
+</style>
+
+<style is:global>
+    /* Global styles for dynamic page buttons in pagination container */
+    .page-btn.active {
+        background-color: var(--btn-highlight);
+        color: #ffffff;
+        border-color: var(--btn-highlight);
+        box-shadow: 0 4px 12px rgba(38, 140, 189, 0.25);
+    }
+</style>
+
+<script>
+    import "../scripts/RenderOnScroll.ts";
+    import { initCardsFilter } from "../scripts/CardsFilter.ts";
+
+    function runFilter() {
+        initCardsFilter({
+            searchId: "skill-search",
+            clearSearchId: "clear-search",
+            categoryTabClass: ".category-tab",
+            cardClass: ".card",
+            noResultsId: "no-cards-msg",
+            gridId: "cards-grid",
+            paginationContainerId: "cards-pagination",
+            pagPrevId: "pag-prev",
+            pagNextId: "pag-next",
+            pagNumbersId: "pag-numbers",
+            scrollTargetId: "skills",
+        });
+    }
+
+    runFilter();
+    document.addEventListener("astro:after-swap", runFilter);
+</script>

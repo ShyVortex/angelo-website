@@ -11,6 +11,7 @@ interface Props {
     layout?: "centered" | "left";
     ratingLabel?: string;
     link?: string;
+    date?: string;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
     layout = "centered",
     ratingLabel,
     link,
+    date
 } = Astro.props;
 
 const tagList = tags
@@ -123,6 +125,14 @@ const Tag = link ? "a" : "div";
                                         class="text-route/30"
                                     />
                                 ))}
+                            </div>
+                        )}
+                        {/* Date indicator */}
+                        {date !== undefined && (
+                            <div
+                                class="flex items-center gap-0.5 mt-1"
+                            >
+                                <p class="text-[13px] text-route">{date}</p>
                             </div>
                         )}
                     </div>

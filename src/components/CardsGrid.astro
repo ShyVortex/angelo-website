@@ -3,7 +3,6 @@ import Card from "./Card.astro";
 import type { CardRaw } from "../types/CardRaw";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -13,6 +12,21 @@ interface Props {
 }
 
 const { cards, translationPrefix = "card" } = Astro.props;
+
+// If cards have date property, sort in descending order
+if (cards.some((card) => card.date)) {
+    cards.sort((a, b) => {
+        // Convert DD/MM/YYYY to YYYY-MM-DD
+        const [dayA, monthA, yearA] = a.date!.split("/");
+        const [dayB, monthB, yearB] = b.date!.split("/");
+
+        const dateA = `${yearA}-${monthA}-${dayA}`;
+        const dateB = `${yearB}-${monthB}-${dayB}`;
+
+        // Descending order: b - a
+        return dateB.localeCompare(dateA);
+    });
+}
 ---
 
 <div
@@ -21,7 +35,8 @@ const { cards, translationPrefix = "card" } = Astro.props;
 >
     {
         cards.map((card: CardRaw) => {
-            const name = t(`${translationPrefix}.${card.id}.name` as any) || card.name;
+            const name =
+                t(`${translationPrefix}.${card.id}.name` as any) || card.name;
             const desc = t(`${translationPrefix}.${card.id}.desc` as any);
             const searchTerms =
                 `${name} ${desc} ${card.tags.join(" ")}`.toLowerCase();
@@ -37,11 +52,13 @@ const { cards, translationPrefix = "card" } = Astro.props;
                         iconName={card.icon}
                         title={name}
                         description={desc}
+                        link={card.link ? card.link : undefined}
                         tags={card.tags}
                         rating={card.rating ? card.rating : undefined}
                         ratingLabel={
                             card.rating ? t("skills.level") : undefined
                         }
+                        date={card.date ? card.date : undefined}
                     />
                 </div>
             );

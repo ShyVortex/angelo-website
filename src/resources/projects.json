@@ -1,0 +1,163 @@
+[
+    {
+        "id": "1",
+        "name": "Simplified Monopoly",
+        "category": "desktop",
+        "icon": "mdi:language-java",
+        "link": "https://github.com/ShyVortex/simplified-monopoly",
+        "tags": [
+            "Java",
+            "OOP",
+            "Swing UI"
+        ],
+        "date": "15/06/2022"
+    },
+    {
+        "id": "2",
+        "name": "Diffusion Tool",
+        "category": "desktop",
+        "icon": "mdi:language-java",
+        "link": "https://github.com/ShyVortex/diffusion-tool",
+        "tags": [
+            "JavaFX",
+            "Python",
+            "AI"
+        ],
+        "date": "23/12/2023"
+    },
+    {
+        "id": "3",
+        "name": "PlusOne - Medical App",
+        "category": "mobile",
+        "icon": "simple-icons:ionic",
+        "link": "https://github.com/ShyVortex/plusone-ionic",
+        "tags": [
+            "TypeScript",
+            "Ionic",
+            "Android",
+            "iOS"
+        ],
+        "date": "09/04/2024"
+    },
+    {
+        "id": "4",
+        "name": "Game Tracker",
+        "category": "mobile",
+        "icon": "simple-icons:flutter",
+        "link": "https://github.com/ShyVortex/game-tracker",
+        "tags": [
+            "Dart",
+            "Flutter",
+            "Android",
+            "iOS"
+        ],
+        "date": "08/05/2024"
+    },
+    {
+        "id": "5",
+        "name": "A Fine-Grained Analysis of Comments Quality in Code-Related Datasets",
+        "category": "cli",
+        "icon": "mdi:language-python",
+        "link": "https://github.com/ShyVortex/analyzer-paper",
+        "tags": [
+            "Python",
+            "Regex",
+            "Data Analysis",
+            "AI"
+        ],
+        "date": "24/10/2024"
+    },
+    {
+        "id": "6",
+        "name": "Steganography Techniques and Forensic Analysis of Digital Images",
+        "category": "cli",
+        "icon": "mdi:bash",
+        "link": "https://github.com/ShyVortex/image-forensics",
+        "tags": [
+            "Research",
+            "Shell",
+            "Forensics",
+            "Security"
+        ],
+        "date": "02/01/2025"
+    },
+    {
+        "id": "7",
+        "name": "UniMove",
+        "category": "mobile",
+        "icon": "mdi:angular",
+        "tags": [
+            "Angular",
+            "Android",
+            "iOS"
+        ],
+        "date": "24/05/2025"
+    },
+    {
+        "id": "8",
+        "name": "Mobile app - Land Reclamation Consortium",
+        "category": "mobile",
+        "icon": "mdi:angular",
+        "tags": [
+            "Angular",
+            "Android",
+            "iOS"
+        ],
+        "date": "30/09/2025"
+    },
+    {
+        "id": "9",
+        "name": "Neural CLAP",
+        "category": "cli",
+        "icon": "mdi:language-python",
+        "link": "https://github.com/ShyVortex/neural-clap",
+        "tags": [
+            "Python",
+            "Data Analysis",
+            "AI",
+            "LLMs"
+        ],
+        "date": "12/01/2026"
+    },
+    {
+        "id": "10",
+        "name": "WordPress site maintenance",
+        "category": "web",
+        "icon": "mdi:language-php",
+        "link": "https://www.business121.it/",
+        "tags": [
+            "PHP",
+            "WordPress",
+            "Plugins"
+        ],
+        "date": "28/02/2026"
+    },
+    {
+        "id": "11",
+        "name": "BlossomOS DevOps",
+        "category": "devops",
+        "icon": "mdi:microsoft-azure-devops",
+        "tags": [
+            "C",
+            "Shell",
+            "Python",
+            "Woodpecker",
+            "CI/CD",
+            "Forgejo"
+        ],
+        "date": "07/05/2026"
+    },
+    {
+        "id": "12",
+        "name": "SACA Portal - ANPR via PDND",
+        "category": "web",
+        "icon": "mdi:angular",
+        "tags": [
+            "Angular 21",
+            "NestJS",
+            "jose",
+            "Docker"
+        ],
+        "date": "24/05/2026"
+    }
+]
