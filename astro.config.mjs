@@ -8,6 +8,7 @@ const isDev = process.argv.includes('dev') || process.argv.includes('start');
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'server',
   adapter: isDev ? undefined : cloudflare(),
   i18n: {
     defaultLocale: 'it',
