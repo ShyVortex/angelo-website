@@ -20,5 +20,24 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  integrations: [icon()]
+  integrations: [
+    icon({
+      include: {
+        mdi: [
+          'language-java', 'language-python', 'bash', 'angular', 'language-php',
+          'microsoft-azure-devops', 'internet', 'server', 'laptop', 'toolbox',
+          'clock', 'star-three-points', 'file-pdf-box', 'translate',
+          'chevron-left', 'chevron-right', 'magnify', 'close-circle',
+          'alert-circle-outline', 'hand-wave', 'star', 'star-half-full', 'star-outline'
+        ],
+        'simple-icons': ['ionic', 'flutter'],
+        'icon-park-outline': ['system'],
+        tabler: ['seo'],
+        ph: ['graduation-cap-fill'],
+        logos: ['whatsapp-icon', 'telegram'],
+        'skill-icons': ['linkedin', 'discord', 'instagram', 'github-dark'],
+        'material-symbols': ['mail-rounded']
+      }
+    })
+  ]
 });
