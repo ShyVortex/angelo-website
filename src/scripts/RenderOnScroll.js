@@ -15,7 +15,7 @@ function initReveal() {
         }
     );
 
-    const elements = document.querySelectorAll(".reveal-on-scroll") as NodeListOf<HTMLElement>;
+    const elements = document.querySelectorAll(".reveal-on-scroll");
     elements.forEach((el) => observer.observe(el));
 }
 
