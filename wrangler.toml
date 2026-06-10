@@ -1,8 +1,9 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "angelo-website"
+
+name = "www"
 main = "@astrojs/cloudflare/entrypoints/server"
 compatibility_date = "2026-06-09"
-compatibility_flags = [ "nodejs_compat" ]
+compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = "./dist/client"
