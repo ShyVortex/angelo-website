@@ -1,22 +1,256 @@
 ---
-import {
-    getLangFromUrl,
-    useTranslations,
-    useTranslatedPath,
-} from "../i18n/utils";
-import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Form from "../components/Form.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
 
 <div id="contacts" class="mt-10 flex justify-center px-4">
-    <div class="text-center max-w-5xl w-full">
+    <div
+        class="flex flex-col items-center justify-center px-4 w-full max-w-5xl reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out"
+    >
         <h1
-            class="text-4xl md:text-4xl font-bold text-main mb-4 drop-shadow-sm"
+            class="text-4xl md:text-4xl font-bold text-highlight mb-4 drop-shadow-sm"
         >
-            {t("wip")}
+            {t("nav.contatti")}
         </h1>
+        <p
+            class="text-route max-w-2xl mx-auto font-semibold text-base md:text-lg mb-10 leading-relaxed"
+        >
+            {t("contacts.subtitle")}
+        </p>
+
+        <div
+            class="md:max-w-xl rounded-2xl border border-underline/10 shadow-xl bg-bg-card p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-highlight/30 hover:shadow-2xl w-full max-w-md reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out"
+        >
+            <Icon
+                class="mx-auto text-main"
+                width="50px"
+                height="50px"
+                name="mdi:hand-wave"
+            />
+            <p class="mt-5 text-main text-xl text-center font-bold">
+                {t("contacts.card.title")}
+            </p>
+            <div
+                class="mt-4 flex flex-wrap justify-center gap-4 sm:gap-5 rounded-2xl p-2 sm:p-4"
+            >
+                <a href="https://wa.me/+393927750987" target="_blank">
+                    <Icon
+                        class="mx-auto text-main"
+                        width="50px"
+                        height="50px"
+                        name="logos:whatsapp-icon"
+                    />
+                </a>
+                <a href="https://t.me/+393927750987" target="_blank">
+                    <Icon
+                        class="mx-auto text-main"
+                        width="50px"
+                        height="50px"
+                        name="logos:telegram"
+                    />
+                </a>
+                <a
+                    href="https://it.linkedin.com/in/angelo-trotta"
+                    target="_blank"
+                >
+                    <Icon
+                        class="mx-auto text-main"
+                        width="50px"
+                        height="50px"
+                        name="skill-icons:linkedin"
+                    />
+                </a>
+                <a
+                    href="https://discord.com/users/220113163671044096"
+                    target="_blank"
+                >
+                    <Icon
+                        class="mx-auto text-black"
+                        width="50px"
+                        height="50px"
+                        name="skill-icons:discord"
+                    />
+                </a>
+                <a href="https://x.com/ShyVortex" target="_blank">
+                    <Icon
+                        class="mx-auto text-black"
+                        width="52px"
+                        height="52px"
+                        name="x-logo"
+                    />
+                </a>
+                <a href="https://www.instagram.com/ang_trotta" target="_blank">
+                    <Icon
+                        class="mx-auto text-main"
+                        width="52px"
+                        height="52px"
+                        name="skill-icons:instagram"
+                    />
+                </a>
+                <a href="https://github.com/ShyVortex" target="_blank">
+                    <Icon
+                        class="mx-auto text-black"
+                        width="50px"
+                        height="50px"
+                        name="skill-icons:github-dark"
+                    />
+                </a>
+                <p class="mt-5 text-route text-center">
+                    {t("contacts.card.disclaimer")}
+                </p>
+            </div>
+        </div>
+
+        <p class="max-w-xl mt-20 mb-20 text-route text-center">
+            {t("contacts.form.invite")}
+        </p>
+
+        <Form
+            iconName="material-symbols:mail-rounded"
+            title={{
+                it: "Inviami un messaggio di posta elettronica",
+                en: "Send me an email",
+            }}
+            params={[
+                {
+                    name: {
+                        it: "Nome",
+                        en: "Name",
+                    },
+                    type: "line",
+                    minLength: 3,
+                    maxLength: 40,
+                    required: true,
+                    allowSpecialChars: false,
+                    allowNumbers: false,
+                    allowSpacing: true,
+                    info: {
+                        it: "[3-40 caratteri] - lettere e spazi",
+                        en: "[3-40 characters] - letters and spaces",
+                    },
+                },
+                {
+                    name: {
+                        it: "Cognome",
+                        en: "Surname",
+                    },
+                    type: "line",
+                    minLength: 3,
+                    maxLength: 40,
+                    required: true,
+                    allowSpecialChars: false,
+                    allowNumbers: false,
+                    allowSpacing: true,
+                    info: {
+                        it: "[3-40 caratteri] - lettere e spazi",
+                        en: "[3-40 characters] - letters and spaces",
+                    },
+                },
+                {
+                    name: {
+                        it: "Azienda",
+                        en: "Company",
+                    },
+                    type: "line",
+                    minLength: 3,
+                    maxLength: 70,
+                    required: false,
+                    allowSpecialChars: true,
+                    allowedSpecialChars: [".", "-", "&"],
+                    allowNumbers: true,
+                    allowSpacing: true,
+                    info: {
+                        it: "[3-70 caratteri] - lettere, numeri, punti (.), trattini alti (-), e commerciale (&) e spazi",
+                        en: "[3-70 characters] - letters, numbers, periods (.), hyphens (-), ampersands (&), and spaces",
+                    },
+                },
+                {
+                    name: {
+                        it: "Email",
+                        en: "Email",
+                    },
+                    type: "line",
+                    minLength: 10,
+                    maxLength: 110,
+                    required: true,
+                    allowSpecialChars: true,
+                    allowedSpecialChars: [".", "-", "_", "@"],
+                    allowNumbers: true,
+                    allowSpacing: false,
+                    info: {
+                        it: "[10-110 caratteri] - lettere, numeri, punti (.), trattini alti (-), trattini bassi(_), e chiocciola (@)",
+                        en: "[10-110 characters] - letters, numbers, periods (.), hyphens (-), underscores (_), and at signs (@)",
+                    },
+                },
+                {
+                    name: {
+                        it: "Telefono",
+                        en: "Phone number",
+                    },
+                    type: "line",
+                    minLength: 8,
+                    maxLength: 13,
+                    required: false,
+                    allowSpecialChars: true,
+                    allowedSpecialChars: ["+"],
+                    allowNumbers: true,
+                    allowSpacing: false,
+                    info: {
+                        it: "[8-13 caratteri] - numeri e segno più (+)",
+                        en: "[8-13 characters] - numbers and plus sign (+)",
+                    },
+                },
+                {
+                    name: {
+                        it: "Oggetto",
+                        en: "Subject",
+                    },
+                    type: "line",
+                    minLength: 3,
+                    maxLength: 150,
+                    required: true,
+                    allowSpecialChars: false,
+                    allowNumbers: true,
+                    allowSpacing: true,
+                    info: {
+                        it: "[3-150 caratteri]",
+                        en: "[3-150 characters]",
+                    },
+                },
+                {
+                    name: {
+                        it: "Messaggio",
+                        en: "Message",
+                    },
+                    type: "block",
+                    required: true,
+                    allowSpecialChars: true,
+                    allowedSpecialChars: [
+                        "+",
+                        "-",
+                        "&",
+                        "@",
+                        "_",
+                        "!",
+                        "#",
+                        "/",
+                    ],
+                    allowNumbers: true,
+                    allowSpacing: true,
+                    info: {
+                        it: "Attenzione: Codice HTML non consentito",
+                        en: "Warning: HTML code not allowed",
+                    },
+                },
+            ]}
+        />
     </div>
 </div>
+
+<script>
+    import "../scripts/RenderOnScroll.ts";
+</script>

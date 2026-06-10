@@ -1,7 +1,4 @@
-export type LocalString = {
-    it: string;
-    en: string;
-}
+import type { LocalString } from "./LocalString";
 
 export type CardRaw = {
     id: string;

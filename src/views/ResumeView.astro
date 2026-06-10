@@ -1,14 +1,9 @@
 ---
-import {
-    getLangFromUrl,
-    useTranslations,
-    useTranslatedPath,
-} from "../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { Icon } from "astro-icon/components";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 
 const pdfUrl =
     lang === "en"
@@ -31,7 +26,9 @@ const alternativePdfUrl =
         <h1 class="text-4xl font-bold text-highlight mb-4 drop-shadow-sm">
             {t("nav.cv")}
         </h1>
-        <p class="text-main font-semibold text-lg md:text-xl opacity-90 mb-8">
+        <p
+            class="text-route max-w-2xl mx-auto font-semibold text-base md:text-lg mb-8 leading-relaxed"
+        >
             {t("cv.desc")}
         </p>
     </div>

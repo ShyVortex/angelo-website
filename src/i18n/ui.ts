@@ -124,7 +124,13 @@ export const ui = {
     "portfolio.9.desc": "Suite di classificazione CLI avanzata progettata per analizzare il feedback degli utenti proveniente dagli app store per dispositivi mobili.",
     "portfolio.10.desc": "Risoluzione problemi, aggiunta di nuove funzionalità e modernizzazione della codebase PHP del sito aziendale Business121.",
     "portfolio.11.desc": "Manutenzione del sistema di building e delle immagini di sistema per il rilascio della distribuzione Linux BlossomOS, attualmente in sviluppo.",
-    "portfolio.12.desc": "Portale per la consultazione di e-service ANPR tramite PDND. Sviluppato con Angular (frontend) e un BFF che implementa i pattern di sicurezza AgID ModI (JWT RS256 e tracciamento audit)."
+    "portfolio.12.desc": "Portale per la consultazione di e-service ANPR tramite PDND. Sviluppato con Angular (frontend) e un BFF che implementa i pattern di sicurezza AgID ModI (JWT RS256 e tracciamento audit).",
+    "contacts.subtitle": "Tutti i modi per raggiungermi",
+    "contacts.card.title": "Puoi trovarmi su",
+    "contacts.card.disclaimer": "Si prega di lasciare un messaggio, preferibilmente su WhatsApp, prima di contattarmi telefonicamente, per evitare che la chiamata vi possa essere rifiutata, dato che solitamente non rispondo a numeri di telefono sconosciuti.",
+    "contacts.form.invite": "Per qualsiasi informazione riguardante me, il mio lavoro, i miei studi, i miei progetti e le mie competenze, o eventuali proposte lavorative, potete contattarmi anche tramite il modulo di contatto qui sotto.",
+    "contacts.form.disclaimer_first": "<b>Attenzione:</b> inviando il tuo messaggio tramite questo modulo di contatto dai il consenso per l'invio di informazioni che permettono l'identificazione utente (indirizzo IP pubblico).",
+    "contacts.form.disclaimer_second": "In caso di abuso di utilizzo del suddetto modulo, come l'invio di messaggi contenenti tentativi di truffe, queste informazioni possono essere comunicate alle forze dell'ordine competenti, essendo previsto dalla legge italiana."
   },
   en: {
     "nav.home": "Home",
@@ -244,7 +250,13 @@ export const ui = {
     "portfolio.9.desc": "Advanced CLI classification suite designed to analyze user feedback from mobile app stores.",
     "portfolio.10.desc": "Fixed issues, added new features, and modernized the PHP codebase of the Business121 corporate website.",
     "portfolio.11.desc": "Maintaining the build system and system images for the BlossomOS Linux distribution release, currently under development.",
-    "portfolio.12.desc": "Portal for consulting ANPR e-services via PDND. Developed with Angular (frontend) and a BFF that implements AgID ModI security patterns (RS256 JWT and audit tracking)."
+    "portfolio.12.desc": "Portal for consulting ANPR e-services via PDND. Developed with Angular (frontend) and a BFF that implements AgID ModI security patterns (RS256 JWT and audit tracking).",
+    "contacts.subtitle": "All the ways to reach me",
+    "contacts.card.title": "You can find me on",
+    "contacts.card.disclaimer": "Please leave a message, preferably via WhatsApp, before calling me to avoid being rejected, as I usually do not answer unknown phone numbers.",
+    "contacts.form.invite": "For any information about me, my work, my studies, my projects and skills, or any job offers, you can also contact me using the contact form below.",
+    "contacts.form.disclaimer_first": "<b>Please note:</b> by submitting your message via this contact form, you consent to the sending of information that allows user identification (public IP address).",
+    "contacts.form.disclaimer_second": "In the event of misuse of the aforementioned form, such as sending messages containing attempted scams, this information may be communicated to the competent law enforcement agencies, as required by Italian law."
   },
 } as const;
 

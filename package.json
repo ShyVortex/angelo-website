@@ -12,16 +12,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@iconify-json/ph": "^1.2.2",
+    "@astrojs/cloudflare": "^13.7.0",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.4",
     "astro-icon": "^1.1.5",
+    "sweetalert2": "^11.26.25",
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
     "@iconify-json/icon-park-outline": "^1.2.4",
+    "@iconify-json/logos": "^1.2.11",
+    "@iconify-json/material-symbols": "^1.2.76",
     "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.85",
+    "@iconify-json/skill-icons": "^1.2.4",
     "@iconify-json/tabler": "^1.2.35"
   }
 }

@@ -1,0 +1,265 @@
+---
+import { Icon } from "astro-icon/components";
+import type { FormParam } from "../types/FormParam";
+import type { LocalString } from "../types/LocalString";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+    iconName?: string;
+    title: LocalString;
+    params: FormParam[];
+}
+
+const { iconName, title, params } = Astro.props;
+---
+
+<div
+    class="w-full max-w-md md:max-w-3xl mx-auto mb-20 rounded-2xl border border-underline/10 shadow-xl bg-bg-card p-6 md:p-10 transition-all duration-1000 hover:border-highlight/30 hover:shadow-2xl"
+>
+    {
+        iconName && (
+            <Icon
+                class="mx-auto text-main"
+                width="50px"
+                height="50px"
+                name={iconName}
+            />
+        )
+    }
+    <h2 class="mt-5 text-main text-2xl text-center font-bold tracking-tight">
+        {lang === "en" ? title.en : title.it}
+    </h2>
+
+    <form
+        id="contact-form"
+        data-params={JSON.stringify(params)}
+        data-lang={lang}
+        class="mt-8 flex flex-col gap-6"
+    >
+        <div class="flex flex-col gap-6">
+            {
+                params.map((param) => {
+                    const isBlock = param.type === "block";
+                    const inputId = param.name.en
+                        .toLowerCase()
+                        .replace(/\s+/g, "-");
+                    const labelText =
+                        lang === "en" ? param.name.en : param.name.it;
+                    const placeholderText =
+                        lang === "en"
+                            ? param.required
+                                ? labelText
+                                : `${labelText} (optional)`
+                            : param.required
+                              ? labelText
+                              : `${labelText} (facoltativo)`;
+
+                    const hasInfo = !!param.info;
+                    const useGrid = hasInfo && !isBlock;
+
+                    return (
+                        <div
+                            class={
+                                useGrid
+                                    ? "grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-5 md:gap-8 items-center"
+                                    : "flex flex-col gap-2"
+                            }
+                        >
+                            <div class="flex flex-col gap-2 w-full">
+                                <label
+                                    for={inputId}
+                                    class="text-main font-semibold text-sm flex items-center gap-1"
+                                >
+                                    {labelText}
+                                    {param.required && (
+                                        <span class="text-red-500">*</span>
+                                    )}
+                                </label>
+
+                                {isBlock ? (
+                                    <textarea
+                                        id={inputId}
+                                        rows={5}
+                                        class="bg-bg-input text-main placeholder-route/50 w-full px-4 py-3 rounded-xl border border-underline/10 focus:outline-none focus:border-highlight/50 focus:ring-1 focus:ring-highlight/50 transition-all resize-none min-h-[120px]"
+                                        placeholder={placeholderText}
+                                        required={param.required}
+                                    />
+                                ) : (
+                                    <input
+                                        id={inputId}
+                                        type={
+                                            param.name.en.toLowerCase() ===
+                                            "email"
+                                                ? "email"
+                                                : "text"
+                                        }
+                                        class="bg-bg-input text-main placeholder-route/50 w-full h-11 px-4 rounded-xl border border-underline/10 focus:outline-none focus:border-highlight/50 focus:ring-1 focus:ring-highlight/50 transition-all"
+                                        placeholder={placeholderText}
+                                        required={param.required}
+                                    />
+                                )}
+                            </div>
+
+                            {hasInfo && (
+                                <div
+                                    class={`text-sm text-route/85 ${useGrid ? "md:mt-6" : "mt-1"}`}
+                                >
+                                    {lang === "en"
+                                        ? param.info!.en
+                                        : param.info!.it}
+                                </div>
+                            )}
+                        </div>
+                    );
+                })
+            }
+        </div>
+
+        <p class="text-xs text-route/70 mt-2">
+            * = {lang === "en" ? "required" : "obbligatorio"}
+        </p>
+
+        <p
+            class="text-route mt-2"
+            set:html={t("contacts.form.disclaimer_first")}
+        />
+        <p class="text-route">
+            {t("contacts.form.disclaimer_second")}
+        </p>
+
+        <div class="mt-4 flex flex-wrap justify-center gap-4">
+            <button
+                type="submit"
+                class="w-45 h-12 bg-btn-highlight hover:bg-btn-highlight/95 text-white rounded-xl font-semibold shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 cursor-pointer"
+            >
+                {lang === "en" ? "Send message" : "Invia messaggio"}
+            </button>
+            <button
+                type="reset"
+                class="w-45 h-12 border border-underline/20 rounded-xl text-main font-semibold hover:bg-underline/5 active:scale-95 transition-all duration-200 cursor-pointer"
+            >
+                {lang === "en" ? "Reset" : "Reimposta"}
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    import Swal from "sweetalert2";
+    import { validate, sendEmail } from "../scripts/FormHandler";
+
+    // Seleziona il form
+    const form = document.getElementById(
+        "contact-form",
+    ) as HTMLFormElement | null;
+    if (form) {
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault(); // Blocca l'invio standard per gestire l'invio via API
+
+            const paramsStr = form.getAttribute("data-params");
+            const lang = form.getAttribute("data-lang") || "it";
+            if (!paramsStr) return;
+
+            try {
+                const params = JSON.parse(paramsStr);
+
+                // Esegue la validazione
+                const isValid = validate(params);
+
+                if (!isValid) {
+                    const errorTitle =
+                        lang === "en"
+                            ? "Validation Error"
+                            : "Errore di Validazione";
+                    const errorMsg =
+                        lang === "en"
+                            ? "Please fill out all the fields in the form correctly."
+                            : "Si prega di compilare correttamente tutti i campi del modulo.";
+
+                    Swal.fire({
+                        title: errorTitle,
+                        text: errorMsg,
+                        icon: "error",
+                        confirmButtonColor: "#268CBD",
+                        background:
+                            getComputedStyle(document.documentElement)
+                                .getPropertyValue("--card-bg")
+                                .trim() || "#ffffff",
+                        color:
+                            getComputedStyle(document.documentElement)
+                                .getPropertyValue("--text")
+                                .trim() || "#0f172a",
+                    });
+                    return;
+                }
+
+                // Mostra un popup di caricamento durante l'invio
+                Swal.fire({
+                    title: lang === "en" ? "Sending..." : "Invio in corso...",
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    },
+                    background:
+                        getComputedStyle(document.documentElement)
+                            .getPropertyValue("--card-bg")
+                            .trim() || "#ffffff",
+                    color:
+                        getComputedStyle(document.documentElement)
+                            .getPropertyValue("--text")
+                            .trim() || "#0f172a",
+                });
+
+                // Invia i dati tramite la funzione sendEmail
+                const isSent = await sendEmail(params);
+
+                if (isSent) {
+                    Swal.fire({
+                        title:
+                            lang === "en"
+                                ? "Message Sent!"
+                                : "Messaggio Inviato!",
+                        text:
+                            lang === "en"
+                                ? "Thank you for contacting me. I will reply as soon as possible."
+                                : "Grazie per avermi contattato. Ti risponderò al più presto.",
+                        icon: "success",
+                        confirmButtonColor: "#268CBD",
+                        background:
+                            getComputedStyle(document.documentElement)
+                                .getPropertyValue("--card-bg")
+                                .trim() || "#ffffff",
+                        color:
+                            getComputedStyle(document.documentElement)
+                                .getPropertyValue("--text")
+                                .trim() || "#0f172a",
+                    });
+                    form.reset(); // Svuota i campi del form dopo il successo
+                } else {
+                    Swal.fire({
+                        title: lang === "en" ? "Error" : "Errore",
+                        text:
+                            lang === "en"
+                                ? "An error occurred while sending the message. Please try again later."
+                                : "Si è verificato un errore durante l'invio del messaggio. Riprova più tardi.",
+                        icon: "error",
+                        confirmButtonColor: "#268CBD",
+                        background:
+                            getComputedStyle(document.documentElement)
+                                .getPropertyValue("--card-bg")
+                                .trim() || "#ffffff",
+                        color:
+                            getComputedStyle(document.documentElement)
+                                .getPropertyValue("--text")
+                                .trim() || "#0f172a",
+                    });
+                }
+            } catch (e) {
+                console.error("Errore durante la sottomissione del form", e);
+            }
+        });
+    }
+</script>

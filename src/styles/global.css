@@ -10,6 +10,7 @@
     --footer-bg: #F1F5F9;
     --card-bg: #FFFFFF;
     --tag-bg: rgba(120, 180, 255, .14);
+    --input-bg: var(--color-gray-200);
     --text: #0F172A;
     --routes-text: #475569;
     --header-text-highlight: #268CBD;
@@ -25,6 +26,7 @@
     --footer-bg: #0C1326;
     --card-bg: #0D1527;
     --tag-bg: rgba(146, 185, 204, .1);
+    --input-bg: var(--color-gray-700);
     --text: #F8FAFC;
     --routes-text: #94A3B8;
     --header-text-highlight: #92B9CC;
@@ -40,6 +42,7 @@
     --color-bg-footer: var(--footer-bg);
     --color-bg-card: var(--card-bg);
     --color-bg-tag: var(--tag-bg);
+    --color-bg-input: var(--input-bg);
     --color-main: var(--text);
     --color-route: var(--routes-text);
     --color-highlight: var(--header-text-highlight);
