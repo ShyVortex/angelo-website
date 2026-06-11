@@ -194,7 +194,7 @@
   },
   {
     "id": "linux",
-    "name": "Linux (Debian/Ubuntu/FOSS)",
+    "name": "Linux",
     "category": "systems_devops",
     "rating": 4.5,
     "icon": "mdi:linux",
