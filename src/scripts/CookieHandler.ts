@@ -2,8 +2,10 @@ const STORAGE_KEY = "cookie-consent";
 
 // Globally exported function to reopen floating cookie button
 (window as any).openCookieBanner = () => {
+    console.log("openCookieBanner called");
     const banner = document.getElementById("cookie-banner");
     const reopenBtn = document.getElementById("cookie-reopen-btn");
+    console.log("openCookieBanner elements:", { banner, reopenBtn });
     if (!banner) return;
     banner.classList.remove(
         "translate-y-30",
@@ -15,6 +17,7 @@ const STORAGE_KEY = "cookie-consent";
 };
 
 function initCookieBanner() {
+    console.log("initCookieBanner executed");
     const banner = document.getElementById("cookie-banner");
     const reopenBtn = document.getElementById("cookie-reopen-btn");
     const panel = document.getElementById("cookie-preferences-panel");
@@ -27,8 +30,11 @@ function initCookieBanner() {
 
     const prefAnalytics = document.getElementById("cookie-pref-analytics") as HTMLInputElement;
 
+    console.log("initCookieBanner elements found:", { banner, reopenBtn });
+
     if (!banner || !reopenBtn) {
         // Elements not yet available in DOM
+        console.warn("Cookie banner or reopen button not found in DOM!");
         return;
     }
 
