@@ -15,14 +15,13 @@ export const POST: APIRoute = async (context) => {
             );
         }
 
-        // Recupera la chiave API in modo sicuro da più sorgenti (locale + Cloudflare Workers)
-        const runtime = (context.locals as any).runtime;
+        // Safely get API key from multiple sources (local + Cloudflare Workers)
+        // We avoid context.locals.runtime since in Astro v6 it throws a runtime error if its properties are accessed.
         const cloudflareEnv = (context.locals as any).cloudflare?.env;
-        const apiKey = runtime?.env?.RESEND_API_KEY || 
-                       cloudflareEnv?.RESEND_API_KEY || 
-                       (globalThis as any).RESEND_API_KEY || 
-                       import.meta.env.RESEND_API_KEY || 
-                       (typeof process !== "undefined" ? process.env.RESEND_API_KEY : undefined);
+        const apiKey = cloudflareEnv?.RESEND_API_KEY ||
+            (globalThis as any).RESEND_API_KEY ||
+            import.meta.env.RESEND_API_KEY ||
+            (typeof process !== "undefined" ? process.env.RESEND_API_KEY : undefined);
 
         if (!apiKey) {
             throw new Error("RESEND_API_KEY is not defined in any environment source.");
@@ -30,7 +29,7 @@ export const POST: APIRoute = async (context) => {
 
         console.log("RESEND_API_KEY caricata:", apiKey ? `${apiKey.substring(0, 6)}... (Lunghezza: ${apiKey.length})` : "undefined");
 
-        // Costruisci il corpo del messaggio email
+        // Construct email message body
         let emailText = `Nuovo messaggio dal modulo contatti del sito web.\n\n`;
         emailText += `Indirizzo IP Utente: ${_ip}\n`;
         emailText += `Destinatario: ${_to}\n`;
@@ -44,7 +43,7 @@ export const POST: APIRoute = async (context) => {
         console.log(emailText);
         console.log("=================================================");
 
-        // Invia email tramite servizio Resend
+        // Send email via Resend service
         const res = await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: {
@@ -64,7 +63,7 @@ export const POST: APIRoute = async (context) => {
             throw new Error(`Email service error (status ${res.status}): ${errorDetails}`);
         }
 
-        // Simula successo
+        // Simulate success
         return new Response(
             JSON.stringify({ message: "Email sent successfully" }),
             { status: 200, headers: { "Content-Type": "application/json" } }
@@ -72,7 +71,7 @@ export const POST: APIRoute = async (context) => {
     } catch (error: any) {
         console.error("Errore durante l'invio dell'email:", error);
         return new Response(
-            JSON.stringify({ 
+            JSON.stringify({
                 error: "Errore interno del server durante l'invio.",
                 details: error?.message || String(error)
             }),
