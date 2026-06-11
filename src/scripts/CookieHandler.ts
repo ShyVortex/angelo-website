@@ -31,8 +31,8 @@ function hideBanner() {
     if (!banner) return;
     banner.classList.add("translate-y-30", "opacity-0", "pointer-events-none");
 
-    // Update floating button state
-    updateFloatingButtonVisibility();
+    // Update floating button visibility
+    handleScroll();
 }
 
 function saveConsent(analyticsVal: boolean) {
@@ -51,42 +51,12 @@ function saveConsent(analyticsVal: boolean) {
     hideBanner();
 }
 
-// Verify and update floating button visibility
-function updateFloatingButtonVisibility() {
-    if (!reopenBtn) return;
-
-    // If banner is open, button must remain hidden
-    if (banner && !banner.classList.contains("pointer-events-none")) {
-        reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
-        return;
-    }
-
-    const consent = localStorage.getItem(STORAGE_KEY);
-    if (consent) {
-        // Check if footer is visibile in viewport
-        const footer = document.querySelector("footer");
-        if (footer) {
-            const rect = footer.getBoundingClientRect();
-            // If footer is visible from the bottom (around 150px) hide button
-            if (rect.top <= window.innerHeight + 150) {
-                reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
-                return;
-            }
-        }
-        reopenBtn.classList.remove("scale-0", "opacity-0", "pointer-events-none");
-    }
-}
-
 // Initial check
 const existingConsent = localStorage.getItem(STORAGE_KEY);
 if (!existingConsent) {
     // Show banner on first load (slightly delayed for nice entry animation)
     setTimeout(showBanner, 1000);
 } else {
-    if (reopenBtn) {
-        // Check whether or not show the button
-        updateFloatingButtonVisibility();
-    }
     try {
         const parsed = JSON.parse(existingConsent);
         if (prefAnalytics) prefAnalytics.checked = !!parsed.analytics;
@@ -140,24 +110,39 @@ reopenBtn?.addEventListener("click", () => {
     showBanner();
 });
 
-// Use IntersectionObserver to monitor footer in a safe and efficient way
-const footer = document.querySelector("footer");
-if (footer && reopenBtn) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(() => {
-            updateFloatingButtonVisibility();
-        });
-    }, {
-        root: null, // viewport
-        rootMargin: "0px 0px 150px 0px", // Intersection is 150px before footer
-        threshold: 0
-    });
+// Hide or show floating button according to scroll and banner state
+function handleScroll() {
+    if (!reopenBtn) return;
 
-    observer.observe(footer);
+    // If banner is visibile button must remain hidden
+    if (banner && !banner.classList.contains("pointer-events-none")) {
+        reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
+        return;
+    }
 
-    // Extra fallback to guarantee smooth transitions during fast movements
-    window.addEventListener("scroll", updateFloatingButtonVisibility, { passive: true });
+    // If user hasn't applied any option yet, don't show the button at all
+    const consent = localStorage.getItem(STORAGE_KEY);
+    if (!consent) {
+        reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
+        return;
+    }
+
+    const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+
+    // Hide if near footer (150px)
+    if (scrollHeight - scrollY - clientHeight <= 150) {
+        reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
+    } else {
+        reopenBtn.classList.remove("scale-0", "opacity-0", "pointer-events-none");
+    }
 }
+
+window.addEventListener("scroll", handleScroll, { passive: true });
+
+// Run on start
+handleScroll();
 
 // Export globally for the footer button or links
 (window as any).openCookieBanner = showBanner;
