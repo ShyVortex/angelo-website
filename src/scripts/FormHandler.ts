@@ -9,10 +9,10 @@ export function validate(inputs: FormParam[]): boolean {
     let textAreas: FormTextArea[] = [];
 
     for (const input of inputs) {
-        // Genera lo stesso ID usato nel componente Form.astro
+        // Generate same ID used in the Form.astro component
         const inputId = input.name.en.toLowerCase().replace(/\s+/g, "-");
         const htmlElement = document.getElementById(inputId) as HTMLInputElement | HTMLTextAreaElement | null;
-        
+
         if (!htmlElement) {
             console.warn(`Element with ID "${inputId}" not found.`);
             continue;
@@ -36,10 +36,10 @@ export function validate(inputs: FormParam[]): boolean {
         const allowSpacing: boolean = formAreaObj.input.allowSpacing;
         const required: boolean = formAreaObj.input.required;
 
-        // Gestione dei campi vuoti (richiesti vs opzionali)
+        // Handle empty fields (optional or required)
         if (text === "") {
-            if (required) return false; // Errore: campo richiesto vuoto
-            continue; // Valido: campo opzionale vuoto, salta le altre verifiche
+            if (required) return false; // Error: required field is empty
+            continue; // Valid: optional field empty, skip
         }
 
         const digits: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -48,13 +48,13 @@ export function validate(inputs: FormParam[]): boolean {
         if (minLength && text.length < minLength) return false;
         if (maxLength && text.length > maxLength) return false;
         if (!allowNumbers && digits.some(digit => text.includes(digit))) return false;
-        
-        // Verifica dei caratteri speciali
+
+        // Verify special character
         if (!allowSpecialChars) {
-            // Se non sono ammessi caratteri speciali, nessuno dei caratteri in specialChars deve essere presente
+            // If no special characters are allowed, none of the chars in specialChars must be present
             if (specialChars.some(char => text.includes(char))) return false;
         } else if (allowedSpecialChars) {
-            // Se sono ammessi ma solo alcuni, quelli non presenti nella whitelist sono vietati
+            // If only some are allowed, those chars not present in the whitelist should not be present
             const forbiddenChars = specialChars.filter(char => !allowedSpecialChars.includes(char));
             if (forbiddenChars.some(char => text.includes(char))) return false;
         }

@@ -74,7 +74,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
             </a>
         </nav>
         <div class="flex items-center justify-self-end gap-1 md:gap-0">
-            <!-- Barra di ricerca espandibile -->
+            <!-- Expandable search bar -->
             <div
                 id="search-container"
                 class="flex items-center transition-all duration-300 w-0 opacity-0 overflow-hidden mr-2"
@@ -86,11 +86,11 @@ const currentRoute = getRouteFromUrl(Astro.url);
                     class="bg-transparent border-b border-main focus:outline-none py-1 px-2 text-[16px] w-40 text-main"
                 />
             </div>
-
+ 
             <button
                 id="search-toggle-btn"
                 class="focus:outline-none flex items-center justify-center w-[35px] h-[35px] mr-4 cursor-pointer"
-                aria-label="Cerca"
+                aria-label="Search"
             >
                 <img
                     id="search-icon"
@@ -304,14 +304,14 @@ const currentRoute = getRouteFromUrl(Astro.url);
         mobileSearchContainer
     ) {
         searchToggleBtn.addEventListener("click", () => {
-            // Se la larghezza dello schermo è inferiore a md (768px), usiamo la barra mobile sotto l'header
+            // If screen width is below md (768px), we use the mobile search bar below header
             const isMobile = window.innerWidth < 768;
-
+ 
             if (isMobile) {
                 const isClosed =
                     mobileSearchContainer.classList.contains("hidden");
                 if (isClosed) {
-                    // Chiudi il menu mobile se è aperto
+                    // Close mobile menu if it is open
                     if (
                         mobileMenu &&
                         !mobileMenu.classList.contains("hidden")
@@ -321,14 +321,14 @@ const currentRoute = getRouteFromUrl(Astro.url);
                         menuIcon?.classList.remove("hidden");
                         menuCloseIcon?.classList.add("hidden");
                     }
-                    // Mostra la barra di ricerca mobile
+                    // Show mobile search bar
                     mobileSearchContainer.classList.remove("hidden");
                     mobileSearchContainer.classList.add("flex");
                     searchIcon.classList.add("hidden");
                     closeIcon.classList.remove("hidden");
                     setTimeout(() => mobileSearchInput?.focus(), 150);
                 } else {
-                    // Nascondi la barra di ricerca mobile
+                    // Hide mobile search bar
                     mobileSearchContainer.classList.add("hidden");
                     mobileSearchContainer.classList.remove("flex");
                     searchIcon.classList.remove("hidden");
@@ -353,7 +353,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
             }
         });
     }
-
+ 
     if (themeSwitchBtn) {
         themeSwitchBtn.addEventListener("click", () => {
             const isDark = document.documentElement.classList.contains("dark");
@@ -366,12 +366,12 @@ const currentRoute = getRouteFromUrl(Astro.url);
             }
         });
     }
-
+ 
     if (mobileMenuBtn && mobileMenu && menuIcon && menuCloseIcon) {
         mobileMenuBtn.addEventListener("click", () => {
             const isHidden = mobileMenu.classList.contains("hidden");
             if (isHidden) {
-                // Chiudi la ricerca mobile se è aperta
+                // Close mobile search if it is open
                 if (
                     mobileSearchContainer &&
                     !mobileSearchContainer.classList.contains("hidden")
@@ -381,7 +381,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
                     searchIcon?.classList.remove("hidden");
                     closeIcon?.classList.add("hidden");
                 }
-
+ 
                 mobileMenu.classList.remove("hidden");
                 mobileMenu.classList.add("flex");
                 menuIcon.classList.add("hidden");

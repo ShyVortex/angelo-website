@@ -151,13 +151,13 @@ const { iconName, title, params } = Astro.props;
     import Swal from "sweetalert2";
     import { validate, sendEmail } from "../scripts/FormHandler";
 
-    // Seleziona il form
+    // Select the form
     const form = document.getElementById(
         "contact-form",
     ) as HTMLFormElement | null;
     if (form) {
         form.addEventListener("submit", async (event) => {
-            event.preventDefault(); // Blocca l'invio standard per gestire l'invio via API
+            event.preventDefault(); // Prevent standard submission to handle sending via API
 
             const paramsStr = form.getAttribute("data-params");
             const lang = form.getAttribute("data-lang") || "it";
@@ -166,7 +166,7 @@ const { iconName, title, params } = Astro.props;
             try {
                 const params = JSON.parse(paramsStr);
 
-                // Esegue la validazione
+                // Perform validation
                 const isValid = validate(params);
 
                 if (!isValid) {
@@ -196,7 +196,7 @@ const { iconName, title, params } = Astro.props;
                     return;
                 }
 
-                // Mostra un popup di caricamento durante l'invio
+                // Show a loading popup during sending
                 Swal.fire({
                     title: lang === "en" ? "Sending..." : "Invio in corso...",
                     allowOutsideClick: false,
@@ -213,7 +213,7 @@ const { iconName, title, params } = Astro.props;
                             .trim() || "#0f172a",
                 });
 
-                // Invia i dati tramite la funzione sendEmail
+                // Send data using the sendEmail function
                 const isSent = await sendEmail(params);
 
                 if (isSent) {
@@ -237,7 +237,7 @@ const { iconName, title, params } = Astro.props;
                                 .getPropertyValue("--text")
                                 .trim() || "#0f172a",
                     });
-                    form.reset(); // Svuota i campi del form dopo il successo
+                    form.reset(); // Reset form fields after success
                 } else {
                     Swal.fire({
                         title: lang === "en" ? "Error" : "Errore",
@@ -258,7 +258,7 @@ const { iconName, title, params } = Astro.props;
                     });
                 }
             } catch (e) {
-                console.error("Errore durante la sottomissione del form", e);
+                console.error("Error during form submission", e);
             }
         });
     }
