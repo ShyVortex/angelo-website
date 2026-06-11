@@ -165,6 +165,22 @@
     {
         "id": "11",
         "name": {
+            "it": "Sviluppo sito Casa Milano",
+            "en": "Casa Milano website development"
+        },
+        "category": "web",
+        "icon": "mdi:language-python",
+        "link": "https://github.com/Ardenzio666/CasaMilano",
+        "tags": [
+            "Python",
+            "Django",
+            "Responsive"
+        ],
+        "date": "08/03/2026"
+    },
+    {
+        "id": "12",
+        "name": {
             "it": "DevOps BlossomOS",
             "en": "BlossomOS DevOps"
         },
@@ -182,7 +198,7 @@
         "date": "07/05/2026"
     },
     {
-        "id": "12",
+        "id": "13",
         "name": {
             "it": "Portale SACA - ANPR via PDND",
             "en": "SACA Portal - ANPR via PDND"

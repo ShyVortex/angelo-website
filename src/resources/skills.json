@@ -255,7 +255,7 @@
   },
   {
     "id": "blender",
-    "name": "Blender (3D Graphics)",
+    "name": "Blender",
     "category": "tools_design",
     "rating": 4,
     "icon": "simple-icons:blender",
