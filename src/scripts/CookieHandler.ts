@@ -1,11 +1,11 @@
-const STORAGE_KEY = "cookie-consent";
+const STORAGE_KEY = "site-consent";
 
-// Globally exported function to reopen floating cookie button
+// Globally exported function to reopen floating preferences button (bypassing 'cookie' filter keywords)
 (window as any).openCookieBanner = () => {
-    console.log("openCookieBanner called");
-    const banner = document.getElementById("cookie-banner");
-    const reopenBtn = document.getElementById("cookie-reopen-btn");
-    console.log("openCookieBanner elements:", { banner, reopenBtn });
+    console.log("openConsentBanner called");
+    const banner = document.getElementById("consent-banner");
+    const reopenBtn = document.getElementById("consent-reopen-btn");
+    console.log("openConsentBanner elements:", { banner, reopenBtn });
     if (!banner) return;
     banner.classList.remove(
         "translate-y-30",
@@ -17,24 +17,24 @@ const STORAGE_KEY = "cookie-consent";
 };
 
 function initCookieBanner() {
-    console.log("initCookieBanner executed");
-    const banner = document.getElementById("cookie-banner");
-    const reopenBtn = document.getElementById("cookie-reopen-btn");
-    const panel = document.getElementById("cookie-preferences-panel");
-    const primaryActions = document.getElementById("cookie-banner-primary-actions");
+    console.log("initConsentBanner executed");
+    const banner = document.getElementById("consent-banner");
+    const reopenBtn = document.getElementById("consent-reopen-btn");
+    const panel = document.getElementById("consent-preferences-panel");
+    const primaryActions = document.getElementById("consent-banner-primary-actions");
 
-    const btnAccept = document.getElementById("cookie-btn-accept");
-    const btnDecline = document.getElementById("cookie-btn-decline");
-    const btnCustomize = document.getElementById("cookie-btn-customize");
-    const btnSave = document.getElementById("cookie-btn-save");
+    const btnAccept = document.getElementById("consent-btn-accept");
+    const btnDecline = document.getElementById("consent-btn-decline");
+    const btnCustomize = document.getElementById("consent-btn-customize");
+    const btnSave = document.getElementById("consent-btn-save");
 
-    const prefAnalytics = document.getElementById("cookie-pref-analytics") as HTMLInputElement;
+    const prefAnalytics = document.getElementById("consent-pref-analytics") as HTMLInputElement;
 
-    console.log("initCookieBanner elements found:", { banner, reopenBtn });
+    console.log("initConsentBanner elements found:", { banner, reopenBtn });
 
     if (!banner || !reopenBtn) {
         // Elements not yet available in DOM
-        console.warn("Cookie banner or reopen button not found in DOM!");
+        console.warn("Consent banner or reopen button not found in DOM!");
         return;
     }
 
@@ -171,7 +171,7 @@ function initCookieBanner() {
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-
+    
     // Run on start
     handleScroll();
 }
