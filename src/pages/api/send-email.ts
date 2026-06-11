@@ -17,7 +17,12 @@ export const POST: APIRoute = async (context) => {
 
         // Recupera la chiave API in modo sicuro da più sorgenti (locale + Cloudflare Workers)
         const runtime = (context.locals as any).runtime;
-        const apiKey = runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY || (typeof process !== "undefined" ? process.env.RESEND_API_KEY : undefined);
+        const cloudflareEnv = (context.locals as any).cloudflare?.env;
+        const apiKey = runtime?.env?.RESEND_API_KEY || 
+                       cloudflareEnv?.RESEND_API_KEY || 
+                       (globalThis as any).RESEND_API_KEY || 
+                       import.meta.env.RESEND_API_KEY || 
+                       (typeof process !== "undefined" ? process.env.RESEND_API_KEY : undefined);
 
         console.log("RESEND_API_KEY caricata:", apiKey ? `${apiKey.substring(0, 6)}... (Lunghezza: ${apiKey.length})` : "undefined");
 
