@@ -32,9 +32,9 @@ function initCookieBanner() {
 
     console.log("initConsentBanner elements found:", { banner, reopenBtn });
 
-    if (!banner || !reopenBtn) {
+    if (!banner) {
         // Elements not yet available in DOM
-        console.warn("Consent banner or reopen button not found in DOM!");
+        console.warn("Consent banner not found in DOM!");
         return;
     }
 
