@@ -2,6 +2,23 @@
     {
         "id": "1",
         "name": {
+            "it": "Testing QA - Locis",
+            "en": "QA Testing - Locis"
+        },
+        "category": "QA",
+        "icon": "mdi:unity",
+        "link": "https://store.steampowered.com/app/1394830/LOCIS/",
+        "tags": [
+            "Unity",
+            "Testing",
+            "QA",
+            "Game Development"
+        ],
+        "date": "17/12/2020"
+    },
+    {
+        "id": "2",
+        "name": {
             "it": "Monopoly Semplificato",
             "en": "Simplified Monopoly"
         },
@@ -16,7 +33,7 @@
         "date": "15/06/2022"
     },
     {
-        "id": "2",
+        "id": "3",
         "name": {
             "it": "Diffusion Tool",
             "en": "Diffusion Tool"
@@ -32,7 +49,7 @@
         "date": "23/12/2023"
     },
     {
-        "id": "3",
+        "id": "4",
         "name": {
             "it": "PlusOne - App Medica",
             "en": "PlusOne - Medical App"
@@ -49,7 +66,7 @@
         "date": "09/04/2024"
     },
     {
-        "id": "4",
+        "id": "5",
         "name": {
             "it": "Game Tracker",
             "en": "Game Tracker"
@@ -66,7 +83,7 @@
         "date": "08/05/2024"
     },
     {
-        "id": "5",
+        "id": "6",
         "name": {
             "it": "Un'analisi a grana fine della qualità dei commenti nei dataset correlati al codice",
             "en": "A Fine-Grained Analysis of Comments Quality in Code-Related Datasets"
@@ -83,7 +100,7 @@
         "date": "24/10/2024"
     },
     {
-        "id": "6",
+        "id": "7",
         "name": {
             "it": "Tecniche di Steganografia e Analisi Forense di Immagini Digitali",
             "en": "Steganography Techniques and Forensic Analysis of Digital Images"
@@ -100,7 +117,7 @@
         "date": "02/01/2025"
     },
     {
-        "id": "7",
+        "id": "8",
         "name": {
             "it": "UniMove",
             "en": "UniMove"
@@ -115,7 +132,7 @@
         "date": "24/05/2025"
     },
     {
-        "id": "8",
+        "id": "9",
         "name": {
             "it": "App mobile - Consorzio di Bonifica",
             "en": "Mobile app - Land Reclamation Consortium"
@@ -130,7 +147,7 @@
         "date": "30/09/2025"
     },
     {
-        "id": "9",
+        "id": "10",
         "name": {
             "it": "Neural CLAP",
             "en": "Neural CLAP"
@@ -147,7 +164,7 @@
         "date": "12/01/2026"
     },
     {
-        "id": "10",
+        "id": "11",
         "name": {
             "it": "Manutenzione sito WordPress",
             "en": "WordPress site maintenance"
@@ -163,7 +180,7 @@
         "date": "28/02/2026"
     },
     {
-        "id": "11",
+        "id": "12",
         "name": {
             "it": "Sviluppo sito Casa Milano",
             "en": "Casa Milano website development"
@@ -179,7 +196,7 @@
         "date": "08/03/2026"
     },
     {
-        "id": "12",
+        "id": "13",
         "name": {
             "it": "DevOps BlossomOS",
             "en": "BlossomOS DevOps"
@@ -198,7 +215,7 @@
         "date": "07/05/2026"
     },
     {
-        "id": "13",
+        "id": "14",
         "name": {
             "it": "Portale SACA - ANPR via PDND",
             "en": "SACA Portal - ANPR via PDND"

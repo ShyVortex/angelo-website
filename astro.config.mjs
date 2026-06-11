@@ -29,7 +29,7 @@ export default defineConfig({
           'toolbox', 'clock', 'star-three-points', 'file-pdf-box', 'translate', 'react',
           'chevron-left', 'chevron-right', 'magnify', 'close-circle', 'tailwind', 'linux', 'docker',
           'alert-circle-outline', 'hand-wave', 'star', 'star-half-full', 'star-outline', 'git', 'github',
-          'wordpress'
+          'wordpress', 'unity'
         ],
         'simple-icons': ['ionic', 'flutter', 'nestjs', 'astro', 'django', 'blender', 'adobephotoshop'],
         'icon-park-outline': ['system'],
