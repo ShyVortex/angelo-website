@@ -15,7 +15,7 @@ const translatePath = useTranslatedPath(lang);
 const currentRoute = getRouteFromUrl(Astro.url);
 ---
 
-<header class="bg-bg-header text-main shadow-sm relative z-50">
+<header class="bg-bg-header text-main shadow-sm relative z-50" data-search-path={translatePath("/cerca")}>
     <div
         class="py-4 px-6 flex justify-between items-center md:grid md:grid-cols-3"
     >
@@ -268,6 +268,33 @@ const currentRoute = getRouteFromUrl(Astro.url);
     const mobileSearchInput = document.getElementById(
         "mobile-search-input",
     ) as HTMLInputElement | null;
+
+    const searchPath = document.querySelector("header")?.getAttribute("data-search-path") || "/cerca";
+
+    const performSearch = (query: string) => {
+        if (query.trim()) {
+            window.location.href = `${searchPath}?q=${encodeURIComponent(query.trim())}`;
+        }
+    };
+
+    searchInput?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            performSearch(searchInput.value);
+        }
+    });
+
+    mobileSearchInput?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            performSearch(mobileSearchInput.value);
+        }
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryParam = urlParams.get("q");
+    if (queryParam) {
+        if (searchInput) searchInput.value = queryParam;
+        if (mobileSearchInput) mobileSearchInput.value = queryParam;
+    }
 
     if (
         searchToggleBtn &&

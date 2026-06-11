@@ -1,0 +1,390 @@
+---
+import {
+    getLangFromUrl,
+    useTranslations,
+    useTranslatedPath,
+} from "../i18n/utils";
+import projectsData from "../resources/projects.json";
+import skillsData from "../resources/skills.json";
+import Card from "../components/Card.astro";
+import type { CardRaw } from "../types/CardRaw";
+import type { MatchedPage } from "../types/MatchedPage";
+
+interface Props {
+    query: string;
+}
+
+const { query = "" } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+// Normalized query
+const q = query.trim().toLowerCase();
+
+// Filter Projects
+let matchedProjects: CardRaw[] = [];
+if (q) {
+    matchedProjects = (projectsData as CardRaw[]).filter((project) => {
+        // Translate name
+        let name = "";
+        if (typeof project.name === "string") {
+            name = project.name;
+        } else if (typeof project.name === "object") {
+            name = lang === "it" ? project.name.it : project.name.en;
+        }
+
+        // Translate desc
+        const desc = t(`portfolio.${project.id}.desc` as any) || "";
+
+        // Tags
+        const tags = project.tags.join(" ");
+
+        return (
+            name.toLowerCase().includes(q) ||
+            desc.toLowerCase().includes(q) ||
+            tags.toLowerCase().includes(q)
+        );
+    });
+
+    // Sort projects descending by date
+    matchedProjects.sort((a, b) => {
+        if (!a.date || !b.date) return 0;
+        const [dayA, monthA, yearA] = a.date.split("/");
+        const [dayB, monthB, yearB] = b.date.split("/");
+        const dateA = `${yearA}-${monthA}-${dayA}`;
+        const dateB = `${yearB}-${monthB}-${dayB}`;
+        return dateB.localeCompare(dateA);
+    });
+}
+
+// Filter Skills
+let matchedSkills: CardRaw[] = [];
+if (q) {
+    matchedSkills = (skillsData as CardRaw[]).filter((skill) => {
+        // Name
+        let name = "";
+        if (typeof skill.name === "string") {
+            name = skill.name;
+        } else if (typeof skill.name === "object") {
+            name = lang === "it" ? skill.name.it : skill.name.en;
+        }
+
+        // Desc
+        const desc = t(`skills.${skill.id}.desc` as any) || "";
+
+        // Tags
+        const tags = skill.tags.join(" ");
+
+        return (
+            name.toLowerCase().includes(q) ||
+            desc.toLowerCase().includes(q) ||
+            tags.toLowerCase().includes(q)
+        );
+    });
+}
+
+// Filter Pages / Content Sections
+const pagesToSearch = [
+    {
+        titleKey: "nav.home",
+        path: "/",
+        contentKeys: [
+            "home.welcome",
+            "home.about_me",
+            "home.bio_short",
+            "home.card_web_title",
+            "home.card_web_desc",
+            "home.card_server_title",
+            "home.card_server_desc",
+            "home.card_legacy_title",
+            "home.card_legacy_desc",
+            "home.card_seo_title",
+            "home.card_seo_desc",
+            "home.card_support_title",
+            "home.card_support_desc",
+            "home.card_other_title",
+            "home.card_other_desc",
+        ],
+    },
+    {
+        titleKey: "nav.biografia",
+        path: "/biografia",
+        contentKeys: [
+            "bio.subtitle",
+            "bio.summary",
+            "bio.edu_title",
+            "bio.edu_desc",
+            "bio.work_title",
+            "bio.work_desc",
+            "bio.hobbies_title",
+            "bio.hobbies_desc",
+            "bio.info_title",
+            "bio.info_desc",
+        ],
+    },
+    {
+        titleKey: "nav.cv",
+        path: "/cv",
+        contentKeys: ["cv.desc", "cv.browser_error"],
+    },
+    {
+        titleKey: "nav.contatti",
+        path: "/contatti",
+        contentKeys: [
+            "contacts.subtitle",
+            "contacts.card.title",
+            "contacts.card.disclaimer",
+            "contacts.form.invite",
+            "contacts.form.disclaimer_first",
+            "contacts.form.disclaimer_second",
+        ],
+    },
+];
+
+let matchedPages: MatchedPage[] = [];
+
+function getSnippet(text: string, query: string, maxLength = 160) {
+    const cleanText = text.replace(/<[^>]*>/g, ""); // filter out HTML tags
+
+    // Search first occurrence of query inside text normalizing both in lower case
+    const index = cleanText.toLowerCase().indexOf(query.toLowerCase());
+    if (index === -1)
+        /* If for any reason the exact keyword isn't found in the clean string
+           simply return the first maxLength characters, adding ...
+           if the original text was longer.
+        */
+        return (
+            cleanText.slice(0, maxLength) +
+            (cleanText.length > maxLength ? "..." : "")
+        );
+
+    // --- Compute context window ---
+    /* Try to place the keyword exactly in the middle of the spinnet
+       moving the start behind of half maxLength.
+       Math.max() guarantees the start index is never lower to 0, meaning the beginning of the text.
+    */
+    const start = Math.max(0, index - Math.floor(maxLength / 2));
+
+    // Guarantees the end index never goes past the maxLength of text
+    const end = Math.min(cleanText.length, start + maxLength);
+
+    let snippet = cleanText.slice(start, end);
+
+    // If snippet doesn't start at the absolute beginning of the text, add ... before snippet
+    if (start > 0) snippet = "..." + snippet;
+
+    // If snippet doesn't reach the absolute end of the text, add ... after snippet
+    if (end < cleanText.length) snippet = snippet + "...";
+
+    return snippet;
+}
+
+// Search matching snippet for each page
+if (q) {
+    pagesToSearch.forEach((page) => {
+        let matchedText = "";
+        for (const key of page.contentKeys) {
+            const val = t(key as any);
+            if (val && val.toLowerCase().includes(q)) {
+                matchedText = val;
+                break;
+            }
+        }
+        if (matchedText) {
+            matchedPages.push({
+                title: t(page.titleKey as any),
+                path: translatePath(page.path),
+                snippet: getSnippet(matchedText, q),
+            });
+        }
+    });
+}
+
+const totalResults =
+    matchedProjects.length + matchedSkills.length + matchedPages.length;
+
+// Results count text
+let countMessage = "";
+if (!q) {
+    countMessage = t("search.no_query");
+} else if (totalResults === 0) {
+    countMessage = `${t("search.results_count_zero")} "${query}"`;
+} else if (totalResults === 1) {
+    countMessage = `${t("search.results_count_one")} "${query}"`;
+} else {
+    countMessage =
+        t("search.results_count_many").replace(
+            "{count}",
+            totalResults.toString(),
+        ) + ` "${query}"`;
+}
+
+function highlightQuery(text: string, query: string) {
+    if (!query) return [text];
+    const parts = text.split(
+        new RegExp(
+            `(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&")})`,
+            "gi",
+        ),
+    );
+    return parts;
+}
+---
+
+<div
+    id="ricerca"
+    class="mt-10 flex flex-col items-center justify-center px-4 w-full"
+>
+    <div
+        class="text-center max-w-5xl w-full reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out mb-12"
+    >
+        <h1
+            class="text-4xl md:text-5xl font-bold text-highlight mb-4 drop-shadow-sm"
+        >
+            {t("nav.cerca")}
+        </h1>
+        <p class="text-route font-semibold text-lg mb-8">
+            {countMessage}
+        </p>
+
+        <!-- Search input inside the search view -->
+        <div class="max-w-md mx-auto relative">
+            <input
+                type="text"
+                id="search-page-input"
+                placeholder={t("search.placeholder")}
+                value={query}
+                class="w-full bg-bg-card border border-underline/20 rounded-xl py-3 px-4 pr-12 focus:outline-none focus:border-highlight/50 text-main shadow-md transition-all"
+            />
+            <button
+                id="search-page-submit"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-route hover:text-highlight transition-colors cursor-pointer"
+                aria-label="Cerca"
+            >
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Results sections -->
+    {
+        totalResults > 0 && (
+            <div class="max-w-5xl w-full flex flex-col gap-16 mb-20">
+                {/* Page Results */}
+                {matchedPages.length > 0 && (
+                    <section class="reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out">
+                        <h2 class="text-2xl font-bold text-highlight mb-6 border-b border-underline/10 pb-2">
+                            {t("search.pages_section")}
+                        </h2>
+                        <div class="flex flex-col gap-4">
+                            {matchedPages.map((page) => (
+                                <a
+                                    href={page.path}
+                                    class="block p-5 bg-bg-card border border-underline/10 rounded-2xl hover:border-highlight/30 hover:shadow-lg transition-all duration-300 group"
+                                >
+                                    <h3 class="text-lg font-bold text-main group-hover:text-highlight transition-colors mb-2">
+                                        {page.title}
+                                    </h3>
+                                    <p class="text-route text-sm leading-relaxed">
+                                        {highlightQuery(page.snippet, q).map(
+                                            (part) =>
+                                                part.toLowerCase() === q ? (
+                                                    <mark class="bg-highlight/20 text-highlight font-semibold rounded px-0.5 dark:bg-highlight/35">
+                                                        {part}
+                                                    </mark>
+                                                ) : (
+                                                    part
+                                                ),
+                                        )}
+                                    </p>
+                                </a>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Projects Results */}
+                {matchedProjects.length > 0 && (
+                    <section class="reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out">
+                        <h2 class="text-2xl font-bold text-highlight mb-6 border-b border-underline/10 pb-2">
+                            {t("nav.portfolio")}
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {matchedProjects.map((project) => (
+                                <Card
+                                    layout="left"
+                                    iconName={project.icon}
+                                    title={
+                                        typeof project.name === "object"
+                                            ? lang === "it"
+                                                ? project.name.it
+                                                : project.name.en
+                                            : project.name
+                                    }
+                                    description={t(
+                                        `portfolio.${project.id}.desc` as any,
+                                    )}
+                                    link={
+                                        project.link ? project.link : undefined
+                                    }
+                                    tags={project.tags}
+                                    date={
+                                        project.date ? project.date : undefined
+                                    }
+                                />
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Skills Results */}
+                {matchedSkills.length > 0 && (
+                    <section class="reveal-on-scroll opacity-0 translate-y-6 transition-all duration-1000 ease-out">
+                        <h2 class="text-2xl font-bold text-highlight mb-6 border-b border-underline/10 pb-2">
+                            {t("nav.skills")}
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {matchedSkills.map((skill) => (
+                                <Card
+                                    layout="left"
+                                    iconName={skill.icon}
+                                    title={
+                                        typeof skill.name === "object"
+                                            ? lang === "it"
+                                                ? skill.name.it
+                                                : skill.name.en
+                                            : skill.name
+                                    }
+                                    description={t(
+                                        `skills.${skill.id}.desc` as any,
+                                    )}
+                                    tags={skill.tags}
+                                    rating={skill.rating}
+                                    ratingLabel={t("skills.level")}
+                                />
+                            ))}
+                        </div>
+                    </section>
+                )}
+            </div>
+        )
+    }
+</div>
+
+<script>
+    import "../scripts/RenderOnScroll.js";
+    import "../scripts/SearchHandler.js";
+</script>
