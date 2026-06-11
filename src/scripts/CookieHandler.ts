@@ -138,12 +138,14 @@ function initCookieBanner() {
         if (!reopenBtn) return;
 
         if (banner && !banner.classList.contains("pointer-events-none")) {
+            console.log("handleScroll: banner is open, hiding reopen button");
             reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
             return;
         }
 
         const consent = localStorage.getItem(STORAGE_KEY);
         if (!consent) {
+            console.log("handleScroll: no consent in storage, hiding reopen button");
             reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
             return;
         }
@@ -151,8 +153,17 @@ function initCookieBanner() {
         const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight;
         const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+        const isNearBottom = scrollHeight - scrollY - clientHeight <= 150;
 
-        if (scrollHeight - scrollY - clientHeight <= 150) {
+        console.log("handleScroll math:", {
+            scrollY,
+            scrollHeight,
+            clientHeight,
+            remainingScroll: scrollHeight - scrollY - clientHeight,
+            isNearBottom
+        });
+
+        if (isNearBottom) {
             reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
         } else {
             reopenBtn.classList.remove("scale-0", "opacity-0", "pointer-events-none");
