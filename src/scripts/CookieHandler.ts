@@ -16,7 +16,11 @@ const prefAnalytics = document.getElementById(
     "cookie-pref-analytics",
 ) as HTMLInputElement;
 
+// In-memory flag to track if reopenBtn should be visible
+let isReopenBtnActive = false;
+
 function showBanner() {
+    isReopenBtnActive = false;
     if (!banner) return;
     banner.classList.remove(
         "translate-y-30",
@@ -28,10 +32,12 @@ function showBanner() {
 }
 
 function hideBanner() {
+    isReopenBtnActive = true;
     if (!banner) return;
     banner.classList.add("translate-y-30", "opacity-0", "pointer-events-none");
-    if (reopenBtn)
-        reopenBtn.classList.remove("scale-0", "opacity-0", "pointer-events-none");
+
+    // Show button only if we aren't at the end of the page
+    handleScroll();
 }
 
 function saveConsent(analyticsVal: boolean) {
@@ -56,9 +62,7 @@ if (!existingConsent) {
     // Show banner on first load (slightly delayed for nice entry animation)
     setTimeout(showBanner, 1000);
 } else {
-    // Hide banner and ensure reopen button is visible
-    if (reopenBtn)
-        reopenBtn.classList.remove("scale-0", "opacity-0", "pointer-events-none");
+    isReopenBtnActive = true;
     try {
         const parsed = JSON.parse(existingConsent);
         if (prefAnalytics) prefAnalytics.checked = !!parsed.analytics;
@@ -112,14 +116,9 @@ reopenBtn?.addEventListener("click", () => {
     showBanner();
 });
 
-// Hide floating button if user is on bottomside of any page
+// Hide floating button near the bottomside of any page
 function handleScroll() {
-    if (!reopenBtn) return;
-
-    // If banner is visible, button should be hidden either way
-    if (banner && !banner.classList.contains("pointer-events-none")) {
-        return;
-    }
+    if (!reopenBtn || !isReopenBtnActive) return;
 
     const scrollPosition = window.innerHeight + window.scrollY;
     const scrollHeight = document.documentElement.scrollHeight;
@@ -128,10 +127,7 @@ function handleScroll() {
     if (scrollPosition >= scrollHeight - 150) {
         reopenBtn.classList.add("scale-0", "opacity-0", "pointer-events-none");
     } else {
-        const consent = localStorage.getItem(STORAGE_KEY);
-        if (consent) {
-            reopenBtn.classList.remove("scale-0", "opacity-0", "pointer-events-none");
-        }
+        reopenBtn.classList.remove("scale-0", "opacity-0", "pointer-events-none");
     }
 }
 
