@@ -70,17 +70,25 @@ function initCookieBanner() {
         hideBanner();
     }
 
-    // Initial check
+    // Initial check and state initialization
     const existingConsent = localStorage.getItem(STORAGE_KEY);
     if (!existingConsent) {
-        setTimeout(showBanner, 1000);
+        // Force show banner and hide reopen button on first load
+        showBanner();
     } else {
+        // Force hide banner
+        if (banner) {
+            banner.classList.add("translate-y-30", "opacity-0", "pointer-events-none");
+        }
         try {
             const parsed = JSON.parse(existingConsent);
             if (prefAnalytics) prefAnalytics.checked = !!parsed.analytics;
         } catch (e) {
             console.error("Error parsing cookie consent", e);
         }
+
+        // Let scroll handler decide visibility of reopen button
+        handleScroll();
     }
 
     // Event Listeners
