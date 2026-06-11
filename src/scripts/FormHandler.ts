@@ -27,7 +27,7 @@ export function validate(inputs: FormParam[]): boolean {
     }
 
     for (const formAreaObj of textAreas) {
-        const text: string = formAreaObj.area.value;
+        const text: string = formAreaObj.area.value.trim();
         const minLength: number | undefined = formAreaObj.input.minLength;
         const maxLength: number | undefined = formAreaObj.input.maxLength;
         const allowNumbers: boolean = formAreaObj.input.allowNumbers;
@@ -37,7 +37,7 @@ export function validate(inputs: FormParam[]): boolean {
         const required: boolean = formAreaObj.input.required;
 
         // Gestione dei campi vuoti (richiesti vs opzionali)
-        if (text.trim() === "") {
+        if (text === "") {
             if (required) return false; // Errore: campo richiesto vuoto
             continue; // Valido: campo opzionale vuoto, salta le altre verifiche
         }
