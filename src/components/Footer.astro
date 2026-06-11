@@ -15,7 +15,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
 <footer
     class="bg-bg-footer text-main py-8 px-6 md:px-20 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
 >
-    <div class="flex flex-col select-none justify-self-start">
+    <div class="flex flex-col select-none justify-self-start md:ml-5">
         <span class="text-[20px] font-semibold leading-tight"
             >Angelo Trotta</span
         >
@@ -83,9 +83,30 @@ const currentRoute = getRouteFromUrl(Astro.url);
                 >{t("footer.accessibility_link")}
             </a>
         </span>
-        <span class="mt-2 text-[14px] text-route md:text-right">
-            <a href="#" class="text-footer-highlight hover:underline"
+        <span
+            class="mt-2 text-[14px] text-route md:text-right flex flex-wrap gap-y-1 gap-x-3 justify-start md:justify-end"
+        >
+            <a
+                href="https://www.iubenda.com/privacy-policy/42688437"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-footer-highlight hover:underline"
                 >{t("footer.privacy")}</a
+            >
+            <span class="text-route/30 select-none hidden sm:inline">|</span>
+            <a
+                href="https://www.iubenda.com/privacy-policy/42688437/cookie-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-footer-highlight hover:underline"
+                >{t("footer.cookie_policy")}</a
+            >
+            <span class="text-route/30 select-none hidden sm:inline">|</span>
+            <a
+                href="#"
+                onclick="if (window.openCookieBanner) { window.openCookieBanner(); } return false;"
+                class="text-footer-highlight hover:underline"
+                >{t("footer.cookie_preferences")}</a
             >
         </span>
     </div>

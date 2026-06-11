@@ -136,7 +136,20 @@ export const ui = {
     "contacts.card.disclaimer": "Si prega di lasciare un messaggio, preferibilmente su WhatsApp, prima di contattarmi telefonicamente, per evitare che la chiamata vi possa essere rifiutata, dato che solitamente non rispondo a numeri di telefono sconosciuti.",
     "contacts.form.invite": "Per qualsiasi informazione riguardante me, il mio lavoro, i miei studi, i miei progetti e le mie competenze, o eventuali proposte lavorative, potete contattarmi anche tramite il modulo di contatto qui sotto.",
     "contacts.form.disclaimer_first": "<b>Attenzione:</b> inviando il tuo messaggio tramite questo modulo di contatto dai il consenso per l'invio di informazioni che permettono l'identificazione utente (indirizzo IP pubblico).",
-    "contacts.form.disclaimer_second": "In caso di abuso di utilizzo del suddetto modulo, come l'invio di messaggi contenenti tentativi di truffe, queste informazioni possono essere comunicate alle forze dell'ordine competenti, essendo previsto dalla legge italiana."
+    "contacts.form.disclaimer_second": "In caso di abuso di utilizzo del suddetto modulo, come l'invio di messaggi contenenti tentativi di truffe, queste informazioni possono essere comunicate alle forze dell'ordine competenti, essendo previsto dalla legge italiana.",
+    "cookie.banner.title": "Informativa sui Cookie",
+    "cookie.banner.description": "Questo sito utilizza solo cookie tecnici ed essenziali per il suo funzionamento. Puoi scegliere se acconsentire all'uso di cookie analitici e di terze parti per aiutarmi a migliorare l'esperienza utente.",
+    "cookie.banner.accept": "Accetta",
+    "cookie.banner.decline": "Rifiuta",
+    "cookie.banner.customize": "Personalizza",
+    "cookie.banner.save": "Salva preferenze",
+    "cookie.banner.policy_link": "Cookie Policy",
+    "cookie.banner.technical": "Cookie Tecnici (Necessari)",
+    "cookie.banner.technical_desc": "Questi cookie sono necessari per abilitare le funzionalità di base del sito, come la scelta della lingua e le preferenze del tema.",
+    "cookie.banner.analytics": "Cookie Analitici e di Terze Parti",
+    "cookie.banner.analytics_desc": "Utilizzati per comprendere l'utilizzo del sito o per integrare servizi di terze parti.",
+    "footer.cookie_preferences": "Gestisci preferenze cookie",
+    "footer.cookie_policy": "Cookie Policy"
   },
   en: {
     "nav.home": "Home",
@@ -268,7 +281,20 @@ export const ui = {
     "contacts.card.disclaimer": "Please leave a message, preferably via WhatsApp, before calling me to avoid being rejected, as I usually do not answer unknown phone numbers.",
     "contacts.form.invite": "For any information about me, my work, my studies, my projects and skills, or any job offers, you can also contact me using the contact form below.",
     "contacts.form.disclaimer_first": "<b>Please note:</b> by submitting your message via this contact form, you consent to the sending of information that allows user identification (public IP address).",
-    "contacts.form.disclaimer_second": "In the event of misuse of the aforementioned form, such as sending messages containing attempted scams, this information may be communicated to the competent law enforcement agencies, as required by Italian law."
+    "contacts.form.disclaimer_second": "In the event of misuse of the aforementioned form, such as sending messages containing attempted scams, this information may be communicated to the competent law enforcement agencies, as required by Italian law.",
+    "cookie.banner.title": "Cookie Information",
+    "cookie.banner.description": "This website uses only technical and essential cookies for its proper functioning. You can choose to consent to the use of analytical and third-party cookies to help me improve the user experience.",
+    "cookie.banner.accept": "Accept",
+    "cookie.banner.decline": "Decline",
+    "cookie.banner.customize": "Customize",
+    "cookie.banner.save": "Save preferences",
+    "cookie.banner.policy_link": "Cookie Policy",
+    "cookie.banner.technical": "Technical Cookies (Required)",
+    "cookie.banner.technical_desc": "These cookies are necessary to enable basic site features, such as language selection and theme preferences.",
+    "cookie.banner.analytics": "Analytical & Third-Party Cookies",
+    "cookie.banner.analytics_desc": "Used to understand website usage or integrate third-party services.",
+    "footer.cookie_preferences": "Manage cookie preferences",
+    "footer.cookie_policy": "Cookie Policy"
   },
 } as const;
 

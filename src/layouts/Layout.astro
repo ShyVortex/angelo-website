@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 import "../styles/global.css";
 import { getLangFromUrl } from "../i18n/utils";
 
@@ -46,5 +47,6 @@ const lang = getLangFromUrl(Astro.url);
 		</main>
 
 		<Footer />
+		<CookieBanner />
 	</body>
 </html>
