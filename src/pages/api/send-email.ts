@@ -24,6 +24,10 @@ export const POST: APIRoute = async (context) => {
                        import.meta.env.RESEND_API_KEY || 
                        (typeof process !== "undefined" ? process.env.RESEND_API_KEY : undefined);
 
+        if (!apiKey) {
+            throw new Error("RESEND_API_KEY is not defined in any environment source.");
+        }
+
         console.log("RESEND_API_KEY caricata:", apiKey ? `${apiKey.substring(0, 6)}... (Lunghezza: ${apiKey.length})` : "undefined");
 
         // Costruisci il corpo del messaggio email
@@ -65,10 +69,13 @@ export const POST: APIRoute = async (context) => {
             JSON.stringify({ message: "Email sent successfully" }),
             { status: 200, headers: { "Content-Type": "application/json" } }
         );
-    } catch (error) {
+    } catch (error: any) {
         console.error("Errore durante l'invio dell'email:", error);
         return new Response(
-            JSON.stringify({ error: "Errore interno del server durante l'invio." }),
+            JSON.stringify({ 
+                error: "Errore interno del server durante l'invio.",
+                details: error?.message || String(error)
+            }),
             { status: 500, headers: { "Content-Type": "application/json" } }
         );
     }
