@@ -17,10 +17,7 @@ const { title, description, image, canonicalPath, noindex } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 
-// Define default localized metadata
-const defaultTitle = lang === "it" 
-	? "Angelo Trotta | Sviluppatore Web & Software | Portfolio" 
-	: "Angelo Trotta | Web & Software Developer | Portfolio";
+const defaultTitle = "Angelo Trotta | Portfolio";
 
 const defaultDescription = lang === "it"
 	? "Sito web e portfolio di Angelo Trotta, sviluppatore web e software con competenze in sicurezza informatica, Angular, Astro, Django, Node.js e amministrazione di sistemi Linux."
