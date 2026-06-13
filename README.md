@@ -12,7 +12,7 @@ It is fully responsive, optimized for search engines (SEO), and supports both En
 - **Astro**: built with Astro utilizing Server-Side Rendering (SSR) mode to deliver optimal performance.
 - **Tailwind CSS**: modern utility-first CSS framework configured via the official Vite plugin for rapid and responsive UI development.
 - **TypeScript**: used throughout the codebase to ensure type safety, modular design, and robust data models.
-- **Deployment & Hosting**: hosted serverless on **Cloudflare Pages** utilizing the `@astrojs/cloudflare` adapter.
+- **Deployment & Hosting**: hosted serverless on **Cloudflare Workers** utilizing the `@astrojs/cloudflare` adapter.
 
 ### Key Features
 - **Astro i18n**: full internationalization mapping routes between Italian (`/`) and English (`/en`).
