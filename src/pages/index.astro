@@ -6,3 +6,13 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
     <HomeView />
 </Layout>
+
+<script is:inline>
+    // Detect browser language
+    const browserLang = navigator.languages?.[0] || navigator.language || "";
+
+    // If user is on root ("/") and language is not Italian
+    if (window.location.pathname === "/" && !browserLang.startsWith("it")) {
+        window.location.pathname = "/en";
+    }
+</script>
