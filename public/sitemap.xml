@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home Page -->
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/en</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/"/>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Biografia / Biography -->
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/biografia</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/biografia"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/biography"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/biografia"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/en/biography</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/biografia"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/biography"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/biografia"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CV / Resume -->
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/cv</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/cv"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/resume"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/cv"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/en/resume</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/cv"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/resume"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/cv"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Skills -->
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/skills</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/skills"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/skills"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/skills"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/en/skills</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/skills"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/skills"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/skills"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Portfolio -->
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/portfolio"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/en/portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/portfolio"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contatti / Contacts -->
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/contatti</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/contatti"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/contacts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/contatti"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.angelotrotta.workers.dev/en/contacts</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.angelotrotta.workers.dev/contatti"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.angelotrotta.workers.dev/en/contacts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.angelotrotta.workers.dev/contatti"/>
+    <priority>0.8</priority>
+  </url>
+</urlset>

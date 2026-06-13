@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Exclude search results page
+Disallow: /cerca
+Disallow: /en/search
+
+Sitemap: https://www.angelotrotta.workers.dev/sitemap.xml

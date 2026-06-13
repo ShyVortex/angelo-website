@@ -5,6 +5,6 @@ import SearchView from "../views/SearchView.astro";
 const query: string = Astro.url.searchParams.get("q") || "";
 ---
 
-<Layout>
+<Layout title="Risultati della Ricerca" noindex={true}>
     <SearchView query={query} />
 </Layout>

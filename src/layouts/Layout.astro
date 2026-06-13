@@ -3,9 +3,74 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 import "../styles/global.css";
-import { getLangFromUrl } from "../i18n/utils";
+import { getLangFromUrl, getRouteFromUrl, useTranslatedPath } from "../i18n/utils";
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	canonicalPath?: string;
+	noindex?: boolean;
+}
+
+const { title, description, image, canonicalPath, noindex } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
+
+// Define default localized metadata
+const defaultTitle = lang === "it" 
+	? "Angelo Trotta | Sviluppatore Web & Software | Portfolio" 
+	: "Angelo Trotta | Web & Software Developer | Portfolio";
+
+const defaultDescription = lang === "it"
+	? "Sito web e portfolio di Angelo Trotta, sviluppatore web e software con competenze in sicurezza informatica, Angular, Astro, Django, Node.js e amministrazione di sistemi Linux."
+	: "Website and portfolio of Angelo Trotta, web and software developer with skills in cybersecurity, Angular, Astro, Django, Node.js, and Linux system administration.";
+
+const metaTitle = title ? `${title} | Angelo Trotta` : defaultTitle;
+const metaDescription = description || defaultDescription;
+const metaImage = image || "/favicon.svg";
+
+// Canonical and multilingual URLs
+const siteUrl = "https://www.angelotrotta.it";
+const currentPath = Astro.url.pathname;
+
+const routeKey = getRouteFromUrl(Astro.url);
+const translatePathIt = useTranslatedPath("it");
+const translatePathEn = useTranslatedPath("en");
+
+// Generate URLs for alternates
+const itUrl = `${siteUrl}${translatePathIt(routeKey)}`;
+const enUrl = `${siteUrl}${translatePathEn(routeKey)}`;
+const canonicalUrl = canonicalPath ? `${siteUrl}${canonicalPath}` : `${siteUrl}${currentPath}`;
+const defaultUrl = itUrl; // Italian is default
+
+// Schema.org Structured Data
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Angelo Trotta",
+  "jobTitle": "Web & Software Developer",
+  "url": siteUrl,
+  "sameAs": [
+    "https://github.com/ShyVortex",
+    "https://it.linkedin.com/in/angelo-trotta"
+  ],
+  "knowsAbout": [
+    "Software Development",
+    "Web Development",
+    "Cybersecurity",
+    "Linux System Administration",
+    "Angular",
+    "Astro",
+    "React",
+    "Django",
+    "NestJS",
+    "TypeScript",
+    "Python",
+    "CI/CD"
+  ],
+  "gender": "http://schema.org/Male"
+};
 ---
 
 <html lang={lang}>
@@ -15,7 +80,39 @@ const lang = getLangFromUrl(Astro.url);
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Angelo Trotta | Portfolio</title>
+		
+		<!-- Primary Meta Tags -->
+		<title>{metaTitle}</title>
+		<meta name="title" content={metaTitle} />
+		<meta name="description" content={metaDescription} />
+		<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+
+		<!-- Canonical & Multilingual (hreflang) -->
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" hreflang="it" href={itUrl} />
+		<link rel="alternate" hreflang="en" href={enUrl} />
+		<link rel="alternate" hreflang="x-default" href={defaultUrl} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={metaTitle} />
+		<meta property="og:description" content={metaDescription} />
+		<meta property="og:image" content={metaImage} />
+		<meta property="og:site_name" content="Angelo Trotta" />
+		<meta property="og:locale" content={lang === "it" ? "it_IT" : "en_US"} />
+		<meta property="og:locale:alternate" content={lang === "it" ? "en_US" : "it_IT"} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalUrl} />
+		<meta property="twitter:title" content={metaTitle} />
+		<meta property="twitter:description" content={metaDescription} />
+		<meta property="twitter:image" content={metaImage} />
+
+		<!-- Structured Data -->
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />
+
 		<script is:inline>
 			const theme = (() => {
 				if (
