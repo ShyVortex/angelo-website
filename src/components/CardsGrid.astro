@@ -71,7 +71,9 @@ if (sortedCards.some((card) => card.date)) {
                         layout={layout}
                         iconName={card.icon}
                         title={name}
-                        description={desc}
+                        description={
+                            card.description ? card.description[lang] : desc
+                        }
                         link={card.link ? card.link : undefined}
                         tags={card.tags}
                         rating={card.rating ? card.rating : undefined}

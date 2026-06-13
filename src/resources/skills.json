@@ -2,6 +2,10 @@
   {
     "id": "html5",
     "name": "HTML5 & CSS3",
+    "description": {
+      "it": "Sviluppo di interfacce web responsive, strutturate semanticamente e conformi agli standard di accessibilità (W3C/WCAG).",
+      "en": "Development of responsive web interfaces, semantically structured and compliant with accessibility standards (W3C/WCAG)."
+    },
     "category": "languages",
     "rating": 5,
     "icon": "mdi:language-html5",
@@ -15,6 +19,10 @@
   {
     "id": "typescript",
     "name": "JavaScript & TypeScript",
+    "description": {
+      "it": "Scripting lato client moderno, programmazione asincrona, gestione dello stato e tipizzazione statica sicura per applicazioni scalabili.",
+      "en": "Modern client-side scripting, asynchronous programming, state management, and type safety for scalable web applications."
+    },
     "category": "languages",
     "rating": 4.5,
     "icon": "mdi:language-typescript",
@@ -28,6 +36,10 @@
   {
     "id": "php",
     "name": "PHP",
+    "description": {
+      "it": "Sviluppo back-end di applicazioni web dinamiche, integrazioni API e manutenzione/personalizzazione di plugin ed estensioni CMS.",
+      "en": "Back-end development of dynamic web applications, API integrations, and maintenance/customization of CMS plugins."
+    },
     "category": "languages",
     "rating": 3,
     "icon": "mdi:language-php",
@@ -41,6 +53,10 @@
   {
     "id": "python",
     "name": "Python",
+    "description": {
+      "it": "Utilizzo per automazione, scripting di sistema, integrazione di pipeline AI (Stable Diffusion/LLM) e sviluppo web back-end.",
+      "en": "Used for automation, system scripting, integration of AI pipelines (Stable Diffusion/LLM), and back-end web development."
+    },
     "category": "languages",
     "rating": 4.5,
     "icon": "mdi:language-python",
@@ -54,6 +70,10 @@
   {
     "id": "java",
     "name": "Java",
+    "description": {
+      "it": "Sviluppo di applicazioni desktop robuste con GUI (JavaFX), integrazione multithreading e sviluppo orientato agli oggetti.",
+      "en": "Development of robust desktop applications with GUI (JavaFX), multithreading integration, and object-oriented development."
+    },
     "category": "languages",
     "rating": 4,
     "icon": "mdi:language-java",
@@ -67,6 +87,10 @@
   {
     "id": "c_bash",
     "name": "C & Bash Shell",
+    "description": {
+      "it": "Programmazione di sistema a basso livello in C e creazione di script Bash per l'automazione dei flussi lavorativi in ambiente UNIX.",
+      "en": "Low-level system programming in C and creation of Bash scripts for Unix workflow automation."
+    },
     "category": "languages",
     "rating": 4,
     "icon": "mdi:bash",
@@ -78,7 +102,14 @@
   },
   {
     "id": "sql",
-    "name": "SQL & Databases",
+    "name": {
+      "it": "SQL e Basi di Dati",
+      "en": "SQL & Databases"
+    },
+    "description": {
+      "it": "Progettazione e amministrazione di database relazionali (MySQL/PostgreSQL), scrittura di query complesse e ottimizzazione delle performance.",
+      "en": "Design and administration of relational databases (MySQL/PostgreSQL), writing complex queries, and performance optimization."
+    },
     "category": "languages",
     "rating": 4,
     "icon": "mdi:database",
@@ -92,6 +123,10 @@
   {
     "id": "angular",
     "name": "Angular",
+    "description": {
+      "it": "Sviluppo di Single Page Applications complesse ed enterprise, gestione avanzata dello stato asincrono con RxJS e programmazione reattiva.",
+      "en": "Development of complex enterprise Single Page Applications, advanced async state management with RxJS, and reactive programming."
+    },
     "category": "frameworks",
     "rating": 5,
     "icon": "mdi:angular",
@@ -106,6 +141,10 @@
   {
     "id": "ionic",
     "name": "Ionic",
+    "description": {
+      "it": "Sviluppo di applicazioni mobile dinamiche, gestione delle chiamate API tramite Axios e design dei componenti accessibile e user-friendly.",
+      "en": "Dynamic mobile application development, API call management via Axios, and accessible, user-friendly component design."
+    },
     "category": "frameworks",
     "rating": 5,
     "icon": "simple-icons:ionic",
@@ -120,6 +159,10 @@
   {
     "id": "nestjs",
     "name": "NestJS",
+    "description": {
+      "it": "Creazione di API RESTful robuste e scalabili lato server, architettura modulare ed efficiente Backend-for-Frontend (BFF).",
+      "en": "Creation of robust and scalable server-side RESTful APIs, with modular architecture and efficient Backend-for-Frontend (BFF) patterns."
+    },
     "category": "frameworks",
     "rating": 3,
     "icon": "simple-icons:nestjs",
@@ -133,6 +176,10 @@
   {
     "id": "react",
     "name": "React",
+    "description": {
+      "it": "Sviluppo di interfacce utente modulari e reattive basate su componenti riutilizzabili ed Hooks personalizzati.",
+      "en": "Development of modular and reactive user interfaces based on reusable components and custom Hooks."
+    },
     "category": "frameworks",
     "rating": 3.5,
     "icon": "mdi:react",
@@ -145,6 +192,10 @@
   {
     "id": "astro",
     "name": "Astro",
+    "description": {
+      "it": "Sviluppo di siti statici e dinamici incredibilmente veloci grazie all'architettura Island e all'eliminazione del JavaScript superfluo.",
+      "en": "Development of incredibly fast static and dynamic sites using the Island architecture and zero-JS-by-default performance optimization."
+    },
     "category": "frameworks",
     "rating": 4,
     "icon": "simple-icons:astro",
@@ -158,6 +209,10 @@
   {
     "id": "django",
     "name": "Django",
+    "description": {
+      "it": "Progettazione rapida e sicura di applicazioni web basate sul framework Python Django, sfruttando il suo ORM integrato.",
+      "en": "Rapid and secure web application development using the Python Django framework, leveraging its robust built-in ORM."
+    },
     "category": "frameworks",
     "rating": 3.5,
     "icon": "simple-icons:django",
@@ -171,6 +226,10 @@
   {
     "id": "tailwind",
     "name": "Tailwind CSS",
+    "description": {
+      "it": "Creazione di design e layout custom ad alte prestazioni tramite un approccio utility-first e pieno supporto responsive.",
+      "en": "Creation of high-performance custom designs and layouts using a utility-first approach and full responsive support."
+    },
     "category": "frameworks",
     "rating": 4.5,
     "icon": "mdi:tailwind",
@@ -183,6 +242,10 @@
   {
     "id": "flutter",
     "name": "Flutter",
+    "description": {
+      "it": "Sviluppo di applicazioni multipiattaforma compilate nativamente per mobile, desktop e web a partire da un'unica codebase.",
+      "en": "Development of natively compiled multi-platform applications for mobile, desktop, and web from a single codebase."
+    },
     "category": "frameworks",
     "rating": 3,
     "icon": "simple-icons:flutter",
@@ -195,6 +258,10 @@
   {
     "id": "linux",
     "name": "Linux",
+    "description": {
+      "it": "Amministrazione di sistemi operativi Linux (distribuzioni basate su Debian, Fedora o Arch), gestione dei pacchetti, configurazione di server e manutenzione.",
+      "en": "Linux system administration (Debian, Fedora and Arch-based distributions), package management, server configuration, and maintenance."
+    },
     "category": "systems_devops",
     "rating": 4.5,
     "icon": "mdi:linux",
@@ -207,6 +274,10 @@
   {
     "id": "docker",
     "name": "Docker & Container",
+    "description": {
+      "it": "Containerizzazione delle applicazioni per garantire ambienti di sviluppo coerenti, scalabilità e facilità di deployment in produzione.",
+      "en": "Containerization of applications to ensure consistent development environments, scalability, and easy production deployments."
+    },
     "category": "systems_devops",
     "rating": 4,
     "icon": "mdi:docker",
@@ -218,7 +289,14 @@
   },
   {
     "id": "cicd",
-    "name": "CI/CD & Automation",
+    "name": {
+      "it": "CI/CD & Automazione",
+      "en": "CI/CD & Automation"
+    },
+    "description": {
+      "it": "Configurazione di pipeline di integrazione e rilascio continui (GitHub Actions/Woodpecker) per test automatizzati e deployment rapidi.",
+      "en": "Configuration of continuous integration and continuous delivery pipelines (GitHub Actions/Woodpecker) for automated testing and deployment."
+    },
     "category": "systems_devops",
     "rating": 4,
     "icon": "mdi:git",
@@ -230,7 +308,11 @@
   },
   {
     "id": "git",
-    "name": "Git & Version Control",
+    "name": "Git & VCS",
+    "description": {
+      "it": "Controllo di versione collaborativo avanzato, gestione dei branch, merge, riscrittura della cronologia e risoluzione dei conflitti.",
+      "en": "Advanced collaborative version control, branch management, merging, history rewriting, and conflict resolution."
+    },
     "category": "systems_devops",
     "rating": 4.5,
     "icon": "mdi:github",
@@ -243,6 +325,10 @@
   {
     "id": "wordpress",
     "name": "WordPress & CMS",
+    "description": {
+      "it": "Creazione, installazione, manutenzione e personalizzazione a livello di codice di piattaforme WordPress, Prestashop, phpBB e Drupal.",
+      "en": "Creation, installation, maintenance, and code-level customization of WordPress, Prestashop, phpBB, and Drupal platforms."
+    },
     "category": "tools_design",
     "rating": 4.5,
     "icon": "mdi:wordpress",
@@ -256,6 +342,10 @@
   {
     "id": "blender",
     "name": "Blender",
+    "description": {
+      "it": "Modellazione tridimensionale, texturing e rendering di asset grafici 3D per svariati ambiti creativi e di presentazione.",
+      "en": "Three-dimensional modeling, texturing, and rendering of 3D graphic assets for various creative and presentation fields."
+    },
     "category": "tools_design",
     "rating": 4,
     "icon": "simple-icons:blender",
@@ -268,6 +358,10 @@
   {
     "id": "adobe_suite",
     "name": "Photoshop & Illustrator",
+    "description": {
+      "it": "Progettazione di elementi grafici vettoriali, mock-up di interfacce utente e fotoritocco professionale utilizzando Adobe Photoshop, Illustrator o GIMP.",
+      "en": "Design of vector graphics elements, user interface mock-ups, and professional photo editing using Adobe Photoshop, Illustrator, or GIMP."
+    },
     "category": "tools_design",
     "rating": 3,
     "icon": "simple-icons:adobephotoshop",
@@ -280,6 +374,10 @@
   {
     "id": "seo_analytics",
     "name": "SEO & Google Tools",
+    "description": {
+      "it": "Ottimizzazione tecnica sui motori di ricerca, audit SEO, miglioramento delle performance web e monitoraggio del traffico con Google Analytics.",
+      "en": "Technical search engine optimization, SEO audits, web performance optimization, and traffic monitoring with Google Analytics."
+    },
     "category": "tools_design",
     "rating": 4,
     "icon": "tabler:seo",

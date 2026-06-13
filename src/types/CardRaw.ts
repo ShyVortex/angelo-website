@@ -3,6 +3,7 @@ import type { LocalString } from "./LocalString";
 export type CardRaw = {
     id: string;
     name: string | LocalString;
+    description?: LocalString;
     category: string;
     rating?: number;
     icon: string;
