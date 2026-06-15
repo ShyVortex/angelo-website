@@ -10,6 +10,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 const currentRoute = getRouteFromUrl(Astro.url);
+
+const privacyUrl: string =
+    lang === "it"
+        ? "https://www.iubenda.com/privacy-policy/42688437"
+        : "https://www.iubenda.com/privacy-policy/59623685";
 ---
 
 <footer
@@ -87,7 +92,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
             class="mt-2 text-[14px] text-route md:text-right flex flex-wrap gap-y-1 gap-x-3 justify-start md:justify-end"
         >
             <a
-                href="https://www.iubenda.com/privacy-policy/42688437"
+                href={privacyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-footer-highlight hover:underline"
@@ -95,7 +100,7 @@ const currentRoute = getRouteFromUrl(Astro.url);
             >
             <span class="text-route/30 select-none hidden sm:inline">|</span>
             <a
-                href="https://www.iubenda.com/privacy-policy/42688437/cookie-policy"
+                href=`${privacyUrl}/cookie-policy`
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-footer-highlight hover:underline"

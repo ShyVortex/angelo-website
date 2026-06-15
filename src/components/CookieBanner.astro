@@ -3,6 +3,11 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const cookiesUrl: string =
+  lang === "it"
+    ? "https://www.iubenda.com/privacy-policy/42688437/cookie-policy"
+    : "https://www.iubenda.com/privacy-policy/59623685/cookie-policy";
 ---
 
 <!-- Consent Banner container -->
@@ -29,7 +34,7 @@ const t = useTranslations(lang);
   <p class="text-route text-[13px] leading-relaxed">
     {t("cookie.banner.description")}{" "}
     <a
-      href="https://www.iubenda.com/privacy-policy/42688437/cookie-policy"
+      href={cookiesUrl}
       target="_blank"
       rel="noopener noreferrer"
       class="mt-1 text-highlight hover:underline font-medium flex items-center gap-0.5"
